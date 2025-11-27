@@ -1,0 +1,486 @@
+// from ai
+
+import React, { useState, useEffect } from 'react';
+import { personalInfo, about, experience, education, projects, skills, social } from '../mockData';
+import { ExternalLink, Github, Mail, Download, ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
+import { Button } from '../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import { Badge } from '../components/ui/badge';
+
+const typewriterTitles = [
+  'Frontend Developer',
+  'Learning Backend Development',
+  'AI & Machine Learning Enthusiast'
+];
+
+const Portfolio = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [sparkles, setSparkles] = useState([]);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'experience', 'education', 'projects', 'skills', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+      
+      // Create trailing sparkles - more frequent for bold effect
+      if (Math.random() > 0.5) {
+        const newSparkle = {
+          id: Date.now() + Math.random(),
+          x: e.clientX + (Math.random() - 0.5) * 40,
+          y: e.clientY + (Math.random() - 0.5) * 40,
+        };
+        setSparkles(prev => [...prev.slice(-6), newSparkle]);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  // Typewriter effect
+  useEffect(() => {
+    const currentTitle = typewriterTitles[currentTitleIndex];
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        if (displayedText.length < currentTitle.length) {
+          setDisplayedText(currentTitle.slice(0, displayedText.length + 1));
+        } else {
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        if (displayedText.length > 0) {
+          setDisplayedText(displayedText.slice(0, -1));
+        } else {
+          setIsDeleting(false);
+          setCurrentTitleIndex((prev) => (prev + 1) % typewriterTitles.length);
+        }
+      }
+    }, isDeleting ? 50 : 100);
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, currentTitleIndex, isDeleting]);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="animated-gradient"></div>
+        <div className="grid-overlay"></div>
+        <div 
+          className="mouse-glow" 
+          style={{
+            left: `${mousePosition.x}px`,
+            top: `${mousePosition.y}px`
+          }}
+        >
+          <span className="sparkle"></span>
+          <span className="sparkle"></span>
+          <span className="sparkle"></span>
+        </div>
+        <div 
+          className="cursor-dot" 
+          style={{
+            left: `${mousePosition.x}px`,
+            top: `${mousePosition.y}px`
+          }}
+        ></div>
+        {/* Trailing sparkles */}
+        {sparkles.map((sparkle) => (
+          <div
+            key={sparkle.id}
+            className="trailing-sparkle"
+            style={{
+              left: `${sparkle.x}px`,
+              top: `${sparkle.y}px`
+            }}
+          ></div>
+        ))}
+      </div>
+
+      {/* Fixed Header */}
+      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-white/25 z-50">
+        <div className="px-6 md:px-[7.6923%] py-4 flex items-center justify-between h-20">
+          <div 
+            className="text-2xl font-semibold tracking-tight cursor-pointer hover:text-[#00FFD1] transition-colors duration-300" 
+            onClick={() => scrollToSection('home')}
+          >
+            {personalInfo.name.split(' ')[0]}
+          </div>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {['home', 'about', 'experience', 'education', 'projects', 'skills', 'contact'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className={`text-lg font-normal capitalize transition-all duration-300 relative nav-link ${
+                  activeSection === section ? 'text-[#00FFD1]' : 'text-[#4D4D4D] hover:text-white'
+                }`}
+              >
+                {section === 'home' ? 'Home' : section}
+                {activeSection === section && (
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#00FFD1] nav-underline"></span>
+                )}
+              </button>
+            ))}
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white hover:text-[#00FFD1] transition-colors duration-300"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/25 py-4 mobile-menu">
+            {['home', 'about', 'experience', 'education', 'projects', 'skills', 'contact'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className={`block w-full text-left px-6 py-3 text-lg capitalize transition-colors duration-300 ${
+                  activeSection === section ? 'text-[#00FFD1] bg-[#00FFD1]/10' : 'text-white/70 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                {section === 'home' ? 'Home' : section}
+              </button>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center px-6 md:px-[7.6923%] pt-20 relative z-10">
+        <div className={`w-full max-w-6xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="flex-1 space-y-6">
+              <div className="space-y-4">
+                <div className="text-[#00FFD1] text-lg font-medium animate-fade-in">Hello, I'm</div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight tracking-tight animate-slide-up">
+                  {personalInfo.name}
+                </h1>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white/85 animate-slide-up-delay">
+                  {personalInfo.title}
+                </h2>
+                <div className="text-xl md:text-2xl lg:text-3xl font-medium text-[#00FFD1] animate-slide-up-delay min-h-[2rem]">
+                  <span>{displayedText}</span><span className="animate-blink">|</span>
+                </div>
+                <p className="text-lg md:text-xl text-white/70 max-w-2xl animate-fade-in-delay">
+                  {personalInfo.tagline}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Button
+                  onClick={() => scrollToSection('projects')}
+                  className="bg-[#00FFD1] text-black hover:bg-[#00FFD1]/90 hover:scale-105 h-14 px-6 text-lg font-medium rounded-none flex items-center gap-2 transition-all duration-400 hero-button"
+                >
+                  View My Work
+                  <ArrowRight className="w-5 h-5" />
+                </Button>
+                <Button
+                  onClick={() => scrollToSection('contact')}
+                  className="bg-white/10 text-white hover:bg-white hover:text-black hover:scale-105 h-14 px-6 text-lg font-medium rounded-none transition-all duration-400 hero-button"
+                >
+                  Get In Touch
+                </Button>
+              </div>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="relative w-64 h-64 md:w-80 md:h-80 profile-container">
+                <div className="absolute inset-0 bg-[#00FFD1]/20 rounded-lg blur-3xl animate-pulse-slow"></div>
+                <img
+                  src={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  className="relative w-full h-full object-cover rounded-lg border border-white/25 hover:border-[#00FFD1] transition-all duration-500"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center mt-16 animate-bounce">
+            <ChevronDown className="w-8 h-8 text-[#00FFD1]" />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">About Me</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="bg-[#121212] border-white/25 rounded-none card-hover about-card">
+              <CardHeader>
+                <CardTitle className="text-2xl text-white">Background</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/85 text-lg leading-relaxed">{about.intro}</p>
+                <p className="text-white/85 text-lg leading-relaxed mt-4">{about.background}</p>
+              </CardContent>
+            </Card>
+            <Card className="bg-[#121212] border-white/25 rounded-none card-hover about-card">
+              <CardHeader>
+                <CardTitle className="text-2xl text-white">Interests & Goals</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-white/85 text-lg leading-relaxed">{about.interests}</p>
+                <p className="text-white/85 text-lg leading-relaxed mt-4">{about.careerGoals}</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Experience</h2>
+          <div className="space-y-8">
+            {experience.map((exp, index) => (
+              <div
+                key={exp.id}
+                className="relative pl-8 border-l-2 border-[#00FFD1]/50 transition-all duration-400 hover:border-[#00FFD1] experience-timeline"
+              >
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-[#00FFD1] rounded-full timeline-dot"></div>
+                <Card className="bg-[#121212] border-white/25 rounded-none experience-card">
+                  <CardHeader>
+                    <CardTitle className="text-xl md:text-2xl text-white">{exp.role}</CardTitle>
+                    <CardDescription className="text-base md:text-lg text-[#00FFD1]">
+                      {exp.company} • {exp.duration}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.map((resp, idx) => (
+                        <li key={idx} className="text-white/85 text-base md:text-lg flex items-start gap-2">
+                          <span className="text-[#00FFD1] mt-1">▹</span>
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Education</h2>
+          {education.map((edu) => (
+            <Card key={edu.id} className="bg-[#121212] border-white/25 rounded-none education-card">
+              <CardHeader>
+                <CardTitle className="text-2xl md:text-3xl text-white">{edu.degree}</CardTitle>
+                <CardDescription className="text-lg md:text-xl text-[#00FFD1]">
+                  {edu.institution}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap items-center gap-4 text-white/85 text-base md:text-lg">
+                  <span>Completed: {edu.year}</span>
+                  <span>•</span>
+                  <span>GPA: {edu.gpa}</span>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Projects</h2>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((project) => (
+              <Card
+                key={project.id}
+                className="bg-[#121212] border-white/25 rounded-none overflow-hidden group project-card"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover project-image"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4 project-overlay">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-[#00FFD1] text-black rounded-sm hover:bg-[#00FFD1]/80 transition-all duration-300 transform hover:scale-110 project-link"
+                    >
+                      <Github className="w-5 h-5" />
+                    </a>
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white text-black rounded-sm hover:bg-white/80 transition-all duration-300 transform hover:scale-110 project-link"
+                    >
+                      <ExternalLink className="w-5 h-5" />
+                    </a>
+                  </div>
+                </div>
+                <CardHeader>
+                  <CardTitle className="text-xl md:text-2xl text-white">{project.title}</CardTitle>
+                  <CardDescription className="text-white/85 text-sm md:text-base leading-relaxed">
+                    {project.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, idx) => (
+                      <Badge
+                        key={idx}
+                        variant="outline"
+                        className="border-[#00FFD1] text-[#00FFD1] bg-[#00FFD1]/10 rounded-sm px-3 py-1 hover:bg-[#00FFD1] hover:text-black transition-all duration-300 tech-badge"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Skills</h2>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+            {skills.map((skillGroup, index) => (
+              <Card key={index} className="bg-[#121212] border-white/25 rounded-none card-hover skills-card">
+                <CardHeader>
+                  <CardTitle className="text-xl md:text-2xl text-[#00FFD1]">{skillGroup.category}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {skillGroup.items.map((skill, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 skill-item"
+                      >
+                        <skill.icon className="w-5 h-5 text-[#00FFD1] skill-icon" />
+                        <span className="text-white/85 text-sm md:text-base">{skill.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-8 text-[#00FFD1] section-title">Get In Touch</h2>
+          <p className="text-xl md:text-2xl text-white/85 mb-12 max-w-2xl mx-auto">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          </p>
+          <div className="flex flex-col items-center gap-6">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="inline-flex items-center gap-3 bg-[#00FFD1] text-black hover:bg-[#00FFD1]/90 hover:scale-105 h-14 px-8 text-lg font-medium rounded-none transition-all duration-400 contact-button"
+            >
+              <Mail className="w-5 h-5" />
+              Send Email
+            </a>
+            <button
+              className="inline-flex items-center gap-3 bg-white/10 text-white hover:bg-white hover:text-black hover:scale-105 h-14 px-8 text-lg font-medium rounded-none transition-all duration-400 contact-button"
+            >
+              <Download className="w-5 h-5" />
+              Download Resume
+            </button>
+            <div className="flex gap-6 mt-8">
+              {social.map((platform) => (
+                <a
+                  key={platform.name}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white/10 hover:bg-[#00FFD1] hover:text-black text-white transition-all duration-300 social-icon"
+                  aria-label={platform.name}
+                >
+                  <platform.icon className="w-6 h-6" />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/25 py-8 px-6 md:px-[7.6923%] relative z-10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-white/70 text-sm md:text-base text-center md:text-left">
+            © {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+          </p>
+          <div className="flex gap-6">
+            {social.map((platform) => (
+              <a
+                key={platform.name}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-[#00FFD1] transition-colors duration-300"
+                aria-label={platform.name}
+              >
+                <platform.icon className="w-5 h-5" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Portfolio;
