@@ -2,13 +2,15 @@
 
 // Mock data for portfolio website
 import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp } from 'lucide-react';
+import dp4 from './components/ui/dp4.jpg';
+import websiteFront from './components/ui/websitefront.jpg';
 
 export const personalInfo = {
   name: "Gourav Verma",
   title: "Aspiring Software Engineer",
   tagline: "Turning curiosity into code.",
   email: "gverma.developer@gmail.com",
-  profileImage: "src/components/ui/dp4.jpg"
+  profileImage: dp4
 };
 
 export const about = {
@@ -111,7 +113,7 @@ export const projects = [
     technologies: ["HTML","CSS","JAVASCRIPT"],/*react,Python,tensorflow,postgreSQL,Docker*/
     github: "https://github.com/gouravverma23/demowebsite",
     demo: "https://gouravverma23.github.io/demowebsite/",
-    image: "src/components/ui/websitefront.jpg"
+    image: websiteFront
     /*https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop*/
   },
   {
