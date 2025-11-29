@@ -105,17 +105,6 @@ const Portfolio = () => {
         <div className="animated-gradient"></div>
         <div className="grid-overlay"></div>
         <div 
-          className="mouse-glow" 
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`
-          }}
-        >
-          <span className="sparkle"></span>
-          <span className="sparkle"></span>
-          <span className="sparkle"></span>
-        </div>
-        <div 
           className="cursor-dot" 
           style={{
             left: `${mousePosition.x}px`,
