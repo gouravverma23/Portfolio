@@ -4,6 +4,7 @@
 import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp } from 'lucide-react';
 import dp4 from './components/ui/dp4.jpg';
 import websiteFront from './components/ui/websitefront.jpg';
+import websiteFront2 from './components/ui/websitefront2.jpg';
 
 export const personalInfo = {
   name: "Gourav Verma",
@@ -118,6 +119,16 @@ export const projects = [
   },
   {
     id: 2,
+    title: "New Website for Factsnreel",
+    description: "Discover fascinating facts across science, space, history, psychology, and more — all simplified, visual, and crafted to spark your curiosity. Dive in and learn something new in seconds.",
+    technologies: ["HTML","CSS","JAVASCRIPT"],/*react,Python,tensorflow,postgreSQL,Docker*/
+    github: "https://github.com/gouravverma23/factsnreel-website",
+    demo: "https://factsnreel-website.vercel.app/",
+    image: websiteFront2
+    /*https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop*/
+  },
+  {
+    id: 3,
     title: "Basic CLI calculator",
     description: "Addition, Subtraction, Multiplication, Division, Power",
     technologies: ["C"],
@@ -126,7 +137,7 @@ export const projects = [
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
   },
   {
-    id: 3,
+    id: 4,
     title: "New projects will be added shortly.",
     description: "I’m working on developing new skills and exploring fresh ideas. Several projects are already in progress and will be showcased here soon. Stay tuned for more updates!",
     technologies: ["React.js", "Tailwind", "Next.js", "Node.js", "MongoDB"],
