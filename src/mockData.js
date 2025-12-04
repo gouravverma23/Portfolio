@@ -121,11 +121,10 @@ export const projects = [
     id: 2,
     title: "New Website for Factsnreel",
     description: "Discover fascinating facts across science, space, history, psychology, and more — all simplified, visual, and crafted to spark your curiosity. Dive in and learn something new in seconds.",
-    technologies: ["HTML","CSS","JAVASCRIPT"],/*react,Python,tensorflow,postgreSQL,Docker*/
+    technologies: ["Javascript","React","Tailwind"],/*react,Python,tensorflow,postgreSQL,Docker*/
     github: "https://github.com/gouravverma23/factsnreel-website",
     demo: "https://factsnreel-website.vercel.app/",
     image: websiteFront2
-    /*https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop*/
   },
   {
     id: 3,
