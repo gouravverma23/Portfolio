@@ -122,8 +122,8 @@ export const projects = [
     title: "New Website for Factsnreel",
     description: "Discover fascinating facts across science, space, history, psychology, and more — all simplified, visual, and crafted to spark your curiosity. Dive in and learn something new in seconds.",
     technologies: ["Javascript","React","Tailwind"],/*react,Python,tensorflow,postgreSQL,Docker*/
-    github: "https://github.com/gouravverma23/factsnreel-website",
-    demo: "https://factsnreel-website.vercel.app/",
+    github: "https://github.com/gouravverma23/factsnreel.git",
+    demo: "https://factsnreel.vercel.app/",
     image: websiteFront2
   },
   {
