@@ -43,7 +43,7 @@ export const experience = [
   {
     id: 2,
     role: "Content Creation",
-    company: "Instagram",
+    company: "Founder of @factsnreel on Instagram",
     duration: "Jan 2020 - Present",
     responsibilities: [
       "Create and edit engaging Instagram reels and posts.",
@@ -135,6 +135,7 @@ export const projects = [
     demo: "https://github.com/gouravverma23/Calculator/blob/main/intermediateclaculator.c",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
   },
+/*
   {
     id: 4,
     title: "New projects will be added shortly.",
@@ -144,7 +145,7 @@ export const projects = [
     demo: "",
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
-  /*
+
   {
     id: 3,
     title: "E-Commerce Analytics Dashboard",

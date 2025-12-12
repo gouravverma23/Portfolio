@@ -84,7 +84,7 @@ const Portfolio = () => {
           setCurrentTitleIndex((prev) => (prev + 1) % typewriterTitles.length);
         }
       }
-    }, isDeleting ? 50 : 100);
+    }, isDeleting ? 30 : 70);
 
     return () => clearTimeout(timeout);
   }, [displayedText, currentTitleIndex, isDeleting]);
@@ -237,7 +237,7 @@ const Portfolio = () => {
         <div className="w-full max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">About Me</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="bg-[#121212] border-white/25 rounded-none card-hover about-card">
+            <Card className="bg-[#121212] border-white/25 rounded-2xl card-hover about-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-white">Background</CardTitle>
               </CardHeader>
@@ -246,7 +246,7 @@ const Portfolio = () => {
                 <p className="text-white/85 text-lg leading-relaxed mt-4">{about.background}</p>
               </CardContent>
             </Card>
-            <Card className="bg-[#121212] border-white/25 rounded-none card-hover about-card">
+            <Card className="bg-[#121212] border-white/25 rounded-2xl card-hover about-card">
               <CardHeader>
                 <CardTitle className="text-2xl text-white">Interests & Goals</CardTitle>
               </CardHeader>
@@ -270,7 +270,7 @@ const Portfolio = () => {
                 className="relative pl-8 border-l-2 border-[#00FFD1]/50 transition-all duration-400 hover:border-[#00FFD1] experience-timeline"
               >
                 <div className="absolute -left-2 top-0 w-4 h-4 bg-[#00FFD1] rounded-full timeline-dot"></div>
-                <Card className="bg-[#121212] border-white/25 rounded-none experience-card">
+                <Card className="bg-[#121212] border-white/25 rounded-2xl rounded-tl-none experience-card">
                   <CardHeader>
                     <CardTitle className="text-xl md:text-2xl text-white">{exp.role}</CardTitle>
                     <CardDescription className="text-base md:text-lg text-[#00FFD1]">
@@ -297,26 +297,34 @@ const Portfolio = () => {
       {/* Education Section */}
       <section id="education" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
         <div className="w-full max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Education</h2>
-          {education.map((edu) => (
-            <Card key={edu.id} className="bg-[#121212] border-white/25 rounded-none education-card">
-              <CardHeader>
-                <CardTitle className="text-2xl md:text-3xl text-white">{edu.degree}</CardTitle>
-                <CardDescription className="text-lg md:text-xl text-[#00FFD1]">
-                  {edu.institution}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap items-center gap-4 text-white/85 text-base md:text-lg">
-                  <span>Completed: {edu.year}</span>
-                  <span>•</span>
-                  <span>GPA: {edu.gpa}</span>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">
+            Education
+          </h2>
+
+          <div className="space-y-4"> 
+            {education.map((edu) => (
+              <Card key={edu.id} className="bg-[#121212] border-white/25 rounded-2xl education-card">
+                <CardHeader>
+                  <CardTitle className="text-2xl md:text-3xl text-white">{edu.degree}</CardTitle>
+                  <CardDescription className="text-lg md:text-xl text-[#00FFD1]">
+                    {edu.institution}
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <div className="flex flex-wrap items-center gap-4 text-white/85 text-base md:text-lg">
+                    <span>Completed: {edu.year}</span>
+                    <span>•</span>
+                    <span>GPA: {edu.gpa}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
         </div>
       </section>
+
 
       {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
@@ -326,7 +334,7 @@ const Portfolio = () => {
             {projects.map((project) => (
               <Card
                 key={project.id}
-                className="bg-[#121212] border-white/25 rounded-none overflow-hidden group project-card"
+                className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -374,6 +382,29 @@ const Portfolio = () => {
                 </CardContent>
               </Card>
             ))}
+            {/*Stay tuned message*/}
+           <div className="col-span-full text-center mt-6">
+              <h3 className="text-2xl md:text-3xl font-semibold text-[#00FFD1] mb-3">
+                New projects will be added shortly.
+              </h3>
+
+              <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                I’m currently building new ideas, improving my skills, and working on several projects behind the scenes. 
+                They’ll be added here soon — stay tuned.
+              </p>
+
+              {/* <div className="mt-4 flex flex-wrap justify-center gap-3">
+                {["React.js", "Tailwind", "Next.js", "Node.js", "MongoDB"].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 text-[#00FFD1] text-sm border border-[#00FFD1]/30 rounded-sm"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div> */}
+            </div>
+
           </div>
         </div>
       </section>
@@ -384,12 +415,12 @@ const Portfolio = () => {
           <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Skills</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
             {skills.map((skillGroup, index) => (
-              <Card key={index} className="bg-[#121212] border-white/25 rounded-none card-hover skills-card">
+              <Card key={index} className="bg-[#121212] border-white/25 rounded-2xl card-hover skills-card">
                 <CardHeader>
                   <CardTitle className="text-xl md:text-2xl text-[#00FFD1]">{skillGroup.category}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
                     {skillGroup.items.map((skill, idx) => (
                       <div
                         key={idx}
