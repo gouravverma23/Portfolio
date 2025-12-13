@@ -1,6 +1,7 @@
 // from ai
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { personalInfo, about, experience, education, projects, skills, social } from '../mockData';
 import { ExternalLink, Github, Mail, Download, ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -14,6 +15,7 @@ const typewriterTitles = [
 ];
 
 const Portfolio = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,7 +29,7 @@ const Portfolio = () => {
     setIsVisible(true);
 
     const handleScroll = () => {
-      const sections = ['home', 'about', 'experience', 'education', 'projects', 'skills', 'contact'];
+      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -46,7 +48,7 @@ const Portfolio = () => {
 
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
-      
+
       // Create trailing sparkles - more frequent for bold effect
       if (Math.random() > 0.5) {
         const newSparkle = {
@@ -104,8 +106,8 @@ const Portfolio = () => {
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="animated-gradient"></div>
         <div className="grid-overlay"></div>
-        <div 
-          className="cursor-dot" 
+        <div
+          className="cursor-dot"
           style={{
             left: `${mousePosition.x}px`,
             top: `${mousePosition.y}px`
@@ -127,22 +129,21 @@ const Portfolio = () => {
       {/* Fixed Header */}
       <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-white/25 z-50">
         <div className="px-6 md:px-[7.6923%] py-4 flex items-center justify-between h-20">
-          <div 
-            className="text-2xl font-semibold tracking-tight cursor-pointer hover:text-[#00FFD1] transition-colors duration-300" 
+          <div
+            className="text-2xl font-semibold tracking-tight cursor-pointer hover:text-[#00FFD1] transition-colors duration-300"
             onClick={() => scrollToSection('home')}
           >
             {personalInfo.name.split(' ')[0]}
           </div>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {['home', 'about', 'experience', 'education', 'projects', 'skills', 'contact'].map((section) => (
+            {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`text-lg font-normal capitalize transition-all duration-300 relative nav-link ${
-                  activeSection === section ? 'text-[#00FFD1]' : 'text-[#4D4D4D] hover:text-white'
-                }`}
+                className={`text-lg font-normal capitalize transition-all duration-300 relative nav-link ${activeSection === section ? 'text-[#00FFD1]' : 'text-[#4D4D4D] hover:text-white'
+                  }`}
               >
                 {section === 'home' ? 'Home' : section}
                 {activeSection === section && (
@@ -164,13 +165,12 @@ const Portfolio = () => {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <nav className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/25 py-4 mobile-menu">
-            {['home', 'about', 'experience', 'education', 'projects', 'skills', 'contact'].map((section) => (
+            {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`block w-full text-left px-6 py-3 text-lg capitalize transition-colors duration-300 ${
-                  activeSection === section ? 'text-[#00FFD1] bg-[#00FFD1]/10' : 'text-white/70 hover:text-white hover:bg-white/5'
-                }`}
+                className={`block w-full text-left px-6 py-3 text-lg capitalize transition-colors duration-300 ${activeSection === section ? 'text-[#00FFD1] bg-[#00FFD1]/10' : 'text-white/70 hover:text-white hover:bg-white/5'
+                  }`}
               >
                 {section === 'home' ? 'Home' : section}
               </button>
@@ -256,74 +256,18 @@ const Portfolio = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
-        <div className="w-full max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Experience</h2>
-          <div className="space-y-8">
-            {experience.map((exp, index) => (
-              <div
-                key={exp.id}
-                className="relative pl-8 border-l-2 border-[#00FFD1]/50 transition-all duration-400 hover:border-[#00FFD1] experience-timeline"
-              >
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-[#00FFD1] rounded-full timeline-dot"></div>
-                <Card className="bg-[#121212] border-white/25 rounded-2xl rounded-tl-none experience-card">
-                  <CardHeader>
-                    <CardTitle className="text-xl md:text-2xl text-white">{exp.role}</CardTitle>
-                    <CardDescription className="text-base md:text-lg text-[#00FFD1]">
-                      {exp.company} • {exp.duration}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {exp.responsibilities.map((resp, idx) => (
-                        <li key={idx} className="text-white/85 text-base md:text-lg flex items-start gap-2">
-                          <span className="text-[#00FFD1] mt-1">▹</span>
-                          <span>{resp}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+          <div className="flex justify-center mt-12">
+            <Button
+              onClick={() => navigate('/experience-education')}
+              className="bg-transparent text-[#00FFD1] hover:text-black hover:bg-[#00FFD1] border border-[#00FFD1] flex items-center gap-2 px-8 py-6 text-xl rounded-none transition-all duration-300"
+            >
+              Experience & Education <ArrowRight className="w-5 h-5" />
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Education Section */}
-      <section id="education" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
-        <div className="w-full max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">
-            Education
-          </h2>
-
-          <div className="space-y-4"> 
-            {education.map((edu) => (
-              <Card key={edu.id} className="bg-[#121212] border-white/25 rounded-2xl education-card">
-                <CardHeader>
-                  <CardTitle className="text-2xl md:text-3xl text-white">{edu.degree}</CardTitle>
-                  <CardDescription className="text-lg md:text-xl text-[#00FFD1]">
-                    {edu.institution}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent>
-                  <div className="flex flex-wrap items-center gap-4 text-white/85 text-base md:text-lg">
-                    <span>Completed: {edu.year}</span>
-                    <span>•</span>
-                    <span>GPA: {edu.gpa}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-        </div>
-      </section>
+      {/* Sections removed: Experience and Education moved to new page */}
 
 
       {/* Projects Section */}
@@ -383,26 +327,15 @@ const Portfolio = () => {
               </Card>
             ))}
             {/*Stay tuned message*/}
-           <div className="col-span-full text-center mt-6">
+            <div className="col-span-full text-center mt-6">
               <h3 className="text-2xl md:text-3xl font-semibold text-[#00FFD1] mb-3">
                 New projects will be added shortly.
               </h3>
 
               <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                I’m currently building new ideas, improving my skills, and working on several projects behind the scenes. 
+                I’m currently building new ideas, improving my skills, and working on several projects behind the scenes.
                 They’ll be added here soon — stay tuned.
               </p>
-
-              {/* <div className="mt-4 flex flex-wrap justify-center gap-3">
-                {["React.js", "Tailwind", "Next.js", "Node.js", "MongoDB"].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 text-[#00FFD1] text-sm border border-[#00FFD1]/30 rounded-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div> */}
             </div>
 
           </div>
