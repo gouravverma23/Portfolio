@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { personalInfo, about, experience, education, projects, skills, social } from '../mockData';
+import { personalInfo, about, experience, education, projects, skills, social, services } from '../pageData';
 import { ExternalLink, Github, Mail, Download, ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
+import Navbar from '../components/Navbar';
 
 const typewriterTitles = [
   'Frontend Developer',
@@ -17,34 +18,13 @@ const typewriterTitles = [
 const Portfolio = () => {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [sparkles, setSparkles] = useState([]);
   const [displayedText, setDisplayedText] = useState('');
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-
   useEffect(() => {
     setIsVisible(true);
-
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetBottom = offsetTop + element.offsetHeight;
-
-          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
 
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -60,10 +40,8 @@ const Portfolio = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
@@ -96,7 +74,6 @@ const Portfolio = () => {
     if (element) {
       const offsetTop = element.offsetTop - 80;
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
-      setMobileMenuOpen(false);
     }
   };
 
@@ -126,58 +103,9 @@ const Portfolio = () => {
         ))}
       </div>
 
-      {/* Fixed Header */}
-      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md border-b border-white/25 z-50">
-        <div className="px-6 md:px-[7.6923%] py-4 flex items-center justify-between h-20">
-          <div
-            className="text-2xl font-semibold tracking-tight cursor-pointer hover:text-[#00FFD1] transition-colors duration-300"
-            onClick={() => scrollToSection('home')}
-          >
-            {personalInfo.name.split(' ')[0]}
-          </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className={`text-lg font-normal capitalize transition-all duration-300 relative nav-link ${activeSection === section ? 'text-[#00FFD1]' : 'text-[#4D4D4D] hover:text-white'
-                  }`}
-              >
-                {section === 'home' ? 'Home' : section}
-                {activeSection === section && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#00FFD1] nav-underline"></span>
-                )}
-              </button>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white hover:text-[#00FFD1] transition-colors duration-300"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/25 py-4 mobile-menu">
-            {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
-              <button
-                key={section}
-                onClick={() => scrollToSection(section)}
-                className={`block w-full text-left px-6 py-3 text-lg capitalize transition-colors duration-300 ${activeSection === section ? 'text-[#00FFD1] bg-[#00FFD1]/10' : 'text-white/70 hover:text-white hover:bg-white/5'
-                  }`}
-              >
-                {section === 'home' ? 'Home' : section}
-              </button>
-            ))}
-          </nav>
-        )}
-      </header>
+      {/* Navbar */}
+      <Navbar />
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center px-6 md:px-[7.6923%] pt-20 relative z-10">
@@ -364,6 +292,30 @@ const Portfolio = () => {
                       </div>
                     ))}
                   </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Services</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <Card key={service.id} className="bg-[#121212] border-white/25 rounded-2xl card-hover service-card flex flex-col items-center text-center p-6">
+                <div className="mb-6 p-4 bg-[#00FFD1]/10 rounded-full">
+                  <service.icon className="w-10 h-10 text-[#00FFD1]" />
+                </div>
+                <CardHeader className="p-0 mb-4">
+                  <CardTitle className="text-xl md:text-2xl text-white mb-2">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                  <CardDescription className="text-white/70 text-base leading-relaxed">
+                    {service.description}
+                  </CardDescription>
                 </CardContent>
               </Card>
             ))}

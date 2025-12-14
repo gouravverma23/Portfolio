@@ -1,7 +1,8 @@
+
 // from ai
 
 // Mock data for portfolio website
-import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp } from 'lucide-react';
+import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp, Layout, Palette, Share2 } from 'lucide-react';
 import dp4 from './components/ui/dp4.jpg';
 import websiteFront from './components/ui/websitefront.jpg';
 import websiteFront2 from './components/ui/websitefront2.jpg';
@@ -19,12 +20,6 @@ export const about = {
   background: "I have been building a strong foundation in programming, algorithms, and software development, and enjoy applying what I learn through projects and hands-on workshops.",
   interests: "I am fascinated by Artificial Intelligence and machine learning, and love experimenting with ideas that could turn into real-world solutions.",
   careerGoals: "I aspire to build a career in AI and software development, working on innovative projects that make a difference while constantly learning and growing."
-  /*
-  intro: "I'm a passionate software engineer with 5+ years of experience building modern web applications. My journey in tech started with curiosity about how things work, and evolved into a deep love for creating elegant solutions to complex problems.",
-  background: "With a strong foundation in computer science and hands-on experience across the full stack, I specialize in building scalable, performant applications. I thrive in collaborative environments where innovation meets pragmatism.",
-  interests: "When I'm not coding, you'll find me exploring new frameworks, contributing to open-source projects, or diving into the latest developments in AI and cloud architecture.",
-  careerGoals: "I'm passionate about leveraging technology to solve real-world problems and am always eager to take on challenges that push the boundaries of what's possible."
-  */
 };
 
 export const experience = [
@@ -51,31 +46,7 @@ export const experience = [
       "Maintain a consistent visual style and improve content quality over time.",
       "Track post performance to understand engagement and refine future content."
     ]
-  }/*,
-  {
-    id: 2,
-    role: "Full Stack Developer",
-    company: "InnovateLabs",
-    duration: "Mar 2020 - Dec 2021",
-    responsibilities: [
-      "Built responsive web applications using React and Node.js",
-      "Designed and implemented RESTful APIs for mobile applications",
-      "Collaborated with UX team to create intuitive user interfaces",
-      "Reduced application load time by 45% through optimization"
-    ]
-  },
-  {
-    id: 3,
-    role: "Software Developer",
-    company: "StartupHub Inc",
-    duration: "Jun 2019 - Feb 2020",
-    responsibilities: [
-      "Developed features for SaaS platform using JavaScript and Python",
-      "Integrated third-party APIs and payment gateways",
-      "Participated in agile development cycles and sprint planning",
-      "Created comprehensive technical documentation"
-    ]
-  }*/
+  }
 ];
 
 export const education = [
@@ -111,17 +82,16 @@ export const projects = [
     id: 1,
     title: "Website for my Instagram Fact page",
     description: "Creating reels that make you say “I didn’t know that!” 🤯🎥.Facts,News,Science,Technology,Current Affair, logic & learning — delivered creatively 🎬💡",
-    technologies: ["HTML","CSS","JAVASCRIPT"],/*react,Python,tensorflow,postgreSQL,Docker*/
+    technologies: ["HTML", "CSS", "JAVASCRIPT"],
     github: "https://github.com/gouravverma23/demowebsite",
     demo: "https://gouravverma23.github.io/demowebsite/",
     image: websiteFront
-    /*https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop*/
   },
   {
     id: 2,
     title: "New Website for Factsnreel",
     description: "Discover fascinating facts across science, space, history, psychology, and more — all simplified, visual, and crafted to spark your curiosity. Dive in and learn something new in seconds.",
-    technologies: ["Javascript","React","Tailwind"],/*react,Python,tensorflow,postgreSQL,Docker*/
+    technologies: ["Javascript", "React", "Tailwind"],
     github: "https://github.com/gouravverma23/factsnreel.git",
     demo: "https://factsnreel.vercel.app/",
     image: websiteFront2
@@ -134,45 +104,7 @@ export const projects = [
     github: "https://github.com/gouravverma23/Calculator",
     demo: "https://github.com/gouravverma23/Calculator/blob/main/intermediateclaculator.c",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
-  },
-/*
-  {
-    id: 4,
-    title: "New projects will be added shortly.",
-    description: "I’m working on developing new skills and exploring fresh ideas. Several projects are already in progress and will be showcased here soon. Stay tuned for more updates!",
-    technologies: ["React.js", "Tailwind", "Next.js", "Node.js", "MongoDB"],
-    github: "https://github.com/gouravverma23/",
-    demo: "",
-    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
-
-  {
-    id: 3,
-    title: "E-Commerce Analytics Dashboard",
-    description: "Comprehensive analytics platform providing real-time insights on sales, customer behavior, and inventory management.",
-    technologies: ["Vue.js", "Express", "GraphQL", "MySQL", "AWS"],
-    github: "https://github.com",
-    demo: "https://demo.example.com",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop"
-  },
-  {
-    id: 4,
-    title: "DevOps Automation Suite",
-    description: "Automated deployment pipeline with infrastructure-as-code, monitoring, and rollback capabilities for cloud applications.",
-    technologies: ["Python", "Kubernetes", "Terraform", "Jenkins", "Prometheus"],
-    github: "https://github.com",
-    demo: "https://demo.example.com",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Mobile Fitness Tracker",
-    description: "Cross-platform mobile app for tracking workouts, nutrition, and health metrics with personalized AI coaching.",
-    technologies: ["React Native", "Firebase", "TensorFlow Lite", "TypeScript"],
-    github: "https://github.com",
-    demo: "https://demo.example.com",
-    image: "https://images.unsplash.com/photo-1461773518188-b3e86f98242f?w=600&h=400&fit=crop"
-  }*/
 ];
 
 export const skills = [
@@ -184,7 +116,6 @@ export const skills = [
       { name: "Java", icon: Code2 },
       { name: "C/C++", icon: Code },
       { name: "SQL", icon: Database }
-      /*{ name: "Go", icon: Cpu }*/
     ]
   },
   {
@@ -199,12 +130,7 @@ export const skills = [
   {
     category: "Backend",
     items: [
-      /*{ name: "Node.js/Express", icon: Terminal },
-      { name: "FastAPI", icon: Cpu },
-      { name: "GraphQL", icon: Database },
-      { name: "REST APIs", icon: Globe }
-       */
-      { name: "Learning", icon: Loader}
+      { name: "Learning", icon: Loader }
     ]
   },
   {
@@ -218,9 +144,30 @@ export const skills = [
   }
 ];
 
+export const services = [
+  {
+    id: 1,
+    title: "Webpage Development(Frontend)",
+    description: "I can design and develop high-quality landing pages and scalable websites that help build a strong online presence and deliver real results. Using React, Tailwind CSS, and JavaScript, I create fast, responsive, and clean solutions with a strong focus on performance, usability, and smooth user experience across all devices.",
+    icon: Layout
+  },
+  {
+    id: 2,
+    title: "UI/UX Design",
+    description: "I design intuitive and visually refined user interfaces with a strong focus on usability and clarity. By paying close attention to spacing, typography, and color harmony, I create designs that feel consistent, functional, and visually engaging across different screens and user interactions.",
+    icon: Palette
+  },
+  {
+    id: 3,
+    title: "Social Media Management",
+    description: "I can manage organic growth and engagement for brands with 4 years of hands-on experience. I have a strong understanding of content strategy, performance analytics, and community engagement, and I focus on building consistent, meaningful growth through audience-focused and data-driven approaches.",
+    icon: Share2
+  }
+];
+
 export const social = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/gaurav-verma-developer/", icon: Linkedin },
   { name: "GitHub", url: "https://github.com/gouravverma23", icon: Github },
-  { name: "Back to top", url: "", icon: ArrowBigUp }, /*Twitter*/
+  { name: "Back to top", url: "", icon: ArrowBigUp },
   { name: "Instagram", url: "https://instagram.com/_gaurav_vermaaa_", icon: Instagram }
 ];

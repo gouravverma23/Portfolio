@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { experience, education } from '../mockData';
+import { experience, education } from '../pageData';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const ExperienceEducation = () => {
   const navigate = useNavigate();
@@ -61,7 +62,9 @@ const ExperienceEducation = () => {
         ))}
       </div>
 
-      <div className="relative z-10 px-6 md:px-[7.6923%] py-8">
+      <Navbar />
+
+      <div className="relative z-10 px-6 md:px-[7.6923%] py-8 pt-24">
         <Button
           onClick={() => navigate('/')}
           className="mb-8 bg-transparent text-[#00FFD1] hover:text-white hover:bg-white/10 border border-[#00FFD1] flex items-center gap-2"
@@ -134,6 +137,15 @@ const ExperienceEducation = () => {
 
           </div>
         </section>
+
+        <div className="flex justify-center mb-12">
+          <Button
+            onClick={() => navigate('/')}
+            className="bg-transparent text-[#00FFD1] hover:text-white hover:bg-white/10 border border-[#00FFD1] flex items-center gap-2 px-8 py-6 text-lg rounded-none transition-all duration-300"
+          >
+            <ArrowLeft className="w-5 h-5" /> Back to Home
+          </Button>
+        </div>
       </div>
     </div>
   );
