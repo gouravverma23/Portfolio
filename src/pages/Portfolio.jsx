@@ -8,6 +8,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
+import Tilt from 'react-parallax-tilt';
 
 const typewriterTitles = [
   'Frontend Developer',
@@ -146,11 +147,25 @@ const Portfolio = () => {
             <div className="flex-shrink-0">
               <div className="relative w-64 h-64 md:w-80 md:h-80 profile-container">
                 <div className="absolute inset-0 bg-[#00FFD1]/20 rounded-lg blur-3xl animate-pulse-slow"></div>
-                <img
-                  src={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                  className="relative w-full h-full object-cover rounded-lg border border-white/25 hover:border-[#00FFD1] transition-all duration-500"
-                />
+                <Tilt
+                  tiltMaxAngleX={10}
+                  tiltMaxAngleY={10}
+                  perspective={1000}
+                  transitionSpeedMs={1500}
+                  scale={1.05}
+                  glareEnable={false}
+                  glareMaxOpacity={0}
+                  glareColor="#00FFD1"
+                  glarePosition="all"
+                  glareBorderRadius="0.5rem"
+                  className="rounded-lg h-full border border-white/25 tilt-card-glow"
+                >
+                  <img
+                    src={personalInfo.profileImage}
+                    alt={personalInfo.name}
+                    className="relative w-full h-full object-cover rounded-lg pointer-events-none"
+                  />
+                </Tilt>
               </div>
             </div>
           </div>
@@ -305,19 +320,34 @@ const Portfolio = () => {
           <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Services</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service) => (
-              <Card key={service.id} className="bg-[#121212] border-white/25 rounded-2xl card-hover service-card flex flex-col items-center text-center p-6">
-                <div className="mb-6 p-4 bg-[#00FFD1]/10 rounded-full">
-                  <service.icon className="w-10 h-10 text-[#00FFD1]" />
-                </div>
-                <CardHeader className="p-0 mb-4">
-                  <CardTitle className="text-xl md:text-2xl text-white mb-2">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <CardDescription className="text-white/70 text-base leading-relaxed">
-                    {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <Tilt
+                key={service.id}
+                tiltMaxAngleX={10}
+                tiltMaxAngleY={10}
+                perspective={1000}
+                transitionSpeedMs={1500}
+                scale={1.02}
+                glareEnable={true}
+                glareMaxOpacity={0.15}
+                glareColor="#00FFD1"
+                glarePosition="all"
+                glareBorderRadius="1rem"
+                className="rounded-2xl h-full border border-white/25 tilt-card-glow"
+              >
+                <Card className="bg-[#121212] border-none h-full flex flex-col items-center text-center p-6 rounded-2xl pointer-events-none">
+                  <div className="mb-6 p-4 bg-[#00FFD1]/10 rounded-full">
+                    <service.icon className="w-10 h-10 text-[#00FFD1]" />
+                  </div>
+                  <CardHeader className="p-0 mb-4">
+                    <CardTitle className="text-xl md:text-2xl text-white mb-2">{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <CardDescription className="text-white/70 text-base leading-relaxed">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Tilt>
             ))}
           </div>
         </div>

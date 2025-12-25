@@ -3,11 +3,13 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Portfolio from './pages/Portfolio.jsx';
 import ExperienceEducation from './pages/ExperienceEducation.jsx';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Portfolio />} />
           <Route path="/experience-education" element={<ExperienceEducation />} />
