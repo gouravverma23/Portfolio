@@ -16,21 +16,15 @@ const typewriterTitles = [
   'AI & Machine Learning Enthusiast'
 ];
 
-const Portfolio = () => {
-  const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
+const BackgroundEffect = React.memo(() => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [sparkles, setSparkles] = useState([]);
-  const [displayedText, setDisplayedText] = useState('');
-  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  useEffect(() => {
-    setIsVisible(true);
 
+  useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
 
-      // Create trailing sparkles - more frequent for bold effect
+      // Create trailing sparkles
       if (Math.random() > 0.5) {
         const newSparkle = {
           id: Date.now() + Math.random(),
@@ -45,6 +39,93 @@ const Portfolio = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0">
+      <div className="animated-gradient"></div>
+      <div className="grid-overlay"></div>
+      <div
+        className="cursor-dot"
+        style={{
+          left: `${mousePosition.x}px`,
+          top: `${mousePosition.y}px`
+        }}
+      ></div>
+      {/* Trailing sparkles */}
+      {sparkles.map((sparkle) => (
+        <div
+          key={sparkle.id}
+          className="trailing-sparkle"
+          style={{
+            left: `${sparkle.x}px`,
+            top: `${sparkle.y}px`
+          }}
+        ></div>
+      ))}
+    </div>
+  );
+});
+
+const SkillGroup = ({ group }) => {
+  const [expandedSkills, setExpandedSkills] = useState({});
+
+  const toggleSkill = (skillName) => {
+    setExpandedSkills(prev => ({
+      ...prev,
+      [skillName]: !prev[skillName]
+    }));
+  };
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
+      {group.items.map((skill, idx) => (
+        <div key={idx} className="space-y-2">
+          <div
+            onClick={() => skill.subItems && toggleSkill(skill.name)}
+            className={`flex items-center justify-between p-3 bg-white/5 border border-white/10 skill-item group relative transition-all duration-300 ${skill.subItems ? 'cursor-pointer hover:bg-white/10' : 'cursor-default'}`}
+          >
+            <div className="flex items-center gap-3">
+              <skill.icon className="w-5 h-5 text-[#00FFD1] skill-icon group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-white/85 text-sm md:text-base">{skill.name}</span>
+            </div>
+            {skill.subItems && (
+              <ChevronDown
+                className={`w-4 h-4 text-[#00FFD1]/50 transition-transform duration-300 ${expandedSkills[skill.name] ? 'rotate-180' : ''}`}
+              />
+            )}
+          </div>
+          {skill.subItems && expandedSkills[skill.name] && (
+            <div className="ml-8 space-y-2 relative animate-fade-in">
+              {skill.subItems.map((subItem, sIdx) => (
+                <div key={sIdx} className="relative flex items-center gap-3 pl-4 py-1 group/sub">
+                  <div className="absolute -left-4 top-0 bottom-1/2 w-4 border-l border-b border-[#00FFD1]/30 rounded-bl-lg"></div>
+                  {sIdx < skill.subItems.length - 1 && (
+                    <div className="absolute -left-4 top-1/2 bottom-0 border-l border-[#00FFD1]/30"></div>
+                  )}
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#00FFD1]/40 group-hover/sub:bg-[#00FFD1] group-hover/sub:shadow-[0_0_8px_#00FFD1] transition-all duration-300"></div>
+                  <span className="text-white/60 text-xs md:text-sm group-hover/sub:text-white transition-colors duration-300 cursor-default">
+                    {subItem}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const Portfolio = () => {
+  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
   }, []);
 
   // Typewriter effect
@@ -80,30 +161,7 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="animated-gradient"></div>
-        <div className="grid-overlay"></div>
-        <div
-          className="cursor-dot"
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`
-          }}
-        ></div>
-        {/* Trailing sparkles */}
-        {sparkles.map((sparkle) => (
-          <div
-            key={sparkle.id}
-            className="trailing-sparkle"
-            style={{
-              left: `${sparkle.x}px`,
-              top: `${sparkle.y}px`
-            }}
-          ></div>
-        ))}
-      </div>
-
+      <BackgroundEffect />
 
       {/* Navbar */}
       <Navbar />
@@ -218,7 +276,7 @@ const Portfolio = () => {
         <div className="w-full max-w-6xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Projects</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
+            {projects.filter(p => p.pinned).map((project) => (
               <Card
                 key={project.id}
                 className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card"
@@ -269,18 +327,25 @@ const Portfolio = () => {
                 </CardContent>
               </Card>
             ))}
-            {/*Stay tuned message*/}
-            <div className="col-span-full text-center mt-6">
-              <h3 className="text-2xl md:text-3xl font-semibold text-[#00FFD1] mb-3">
-                New projects will be added shortly.
-              </h3>
-
-              <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-                I’m currently building new ideas, improving my skills, and working on several projects behind the scenes.
-                They’ll be added here soon — stay tuned.
-              </p>
-            </div>
-
+            {/*Stay tuned message if no pinned projects or just extra info*/}
+            {projects.filter(p => p.pinned).length === 0 && (
+              <div className="col-span-full text-center mt-6">
+                <h3 className="text-2xl md:text-3xl font-semibold text-[#00FFD1] mb-3">
+                  New projects will be added shortly.
+                </h3>
+                <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                  I’m currently building new ideas, improving my skills, and working on several projects behind the scenes.
+                </p>
+              </div>
+            )}
+          </div>
+          <div className="flex justify-center mt-12">
+            <Button
+              onClick={() => navigate('/projects')}
+              className="bg-transparent text-[#00FFD1] hover:text-black hover:bg-[#00FFD1] border border-[#00FFD1] flex items-center gap-2 px-8 py-6 text-xl rounded-none transition-all duration-300"
+            >
+              View All Projects <ArrowRight className="w-5 h-5" />
+            </Button>
           </div>
         </div>
       </section>
@@ -296,17 +361,7 @@ const Portfolio = () => {
                   <CardTitle className="text-xl md:text-2xl text-[#00FFD1]">{skillGroup.category}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
-                    {skillGroup.items.map((skill, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 skill-item"
-                      >
-                        <skill.icon className="w-5 h-5 text-[#00FFD1] skill-icon" />
-                        <span className="text-white/85 text-sm md:text-base">{skill.name}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <SkillGroup group={skillGroup} />
                 </CardContent>
               </Card>
             ))}

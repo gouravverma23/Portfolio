@@ -2,7 +2,7 @@
 // from ai
 
 // Mock data for portfolio website
-import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp, Layout, Palette, Share2 } from 'lucide-react';
+import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp, Layout, Palette, Share2, Server, Computer } from 'lucide-react';
 import dp4 from './components/ui/dp4.jpg';
 import websiteFront from './components/ui/websitefront.jpg';
 import websiteFront2 from './components/ui/websitefront2.jpg';
@@ -85,7 +85,8 @@ export const projects = [
     technologies: ["HTML", "CSS", "JAVASCRIPT"],
     github: "https://github.com/gouravverma23/demowebsite",
     demo: "https://gouravverma23.github.io/demowebsite/",
-    image: websiteFront
+    image: websiteFront,
+    pinned: false
   },
   {
     id: 2,
@@ -94,7 +95,8 @@ export const projects = [
     technologies: ["Javascript", "React", "Tailwind"],
     github: "https://github.com/gouravverma23/factsnreel.git",
     demo: "https://factsnreel.vercel.app/",
-    image: websiteFront2
+    image: websiteFront2,
+    pinned: true
   },
   {
     id: 3,
@@ -103,16 +105,44 @@ export const projects = [
     technologies: ["C"],
     github: "https://github.com/gouravverma23/Calculator",
     demo: "https://github.com/gouravverma23/Calculator/blob/main/intermediateclaculator.c",
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
-  }
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop",
+    pinned: false
+  },
+  {
+    id: 4,
+    title: "Typing Speed Tester",
+    description: "A lightweight web app that measures your typing speed and accuracy in real time, providing instant WPM results and performance feedback to help you improve your keyboard skills.",
+    technologies: ["Javascript", "HTML", "CSS"],
+    github: "https://github.com/gouravverma23/Typingspeed",
+    demo: "https://gouravverma23.github.io/Typingspeed/",
+    image: "https://image2url.com/r2/default/images/1771265954459-d267e6d5-4ecf-4cc6-b5ae-6d19c23f96da.png",
+    pinned: true
+  },
+  //  {
+  //   id: 5,
+  //   title: "Weather Dashboard",
+  //   description: "A real-time weather dashboard using OpenWeather API to provide detailed forecasts and current conditions for any city globally.",
+  //   technologies: ["React", "API", "Chart.js"],
+  //   github: "https://github.com/gouravverma23",
+  //   demo: "#",
+  //   image: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=600&h=400&fit=crop",
+  //   pinned: false
+  // }
 ];
 
 export const skills = [
   {
     category: "Languages",
     items: [
-      { name: "JavaScript", icon: Code2 },
-      { name: "Python", icon: Terminal },
+      { name: "JavaScript", 
+        icon: Code2,
+        subItems: ["React","Nodejs","Expressjs"]
+       },
+      {
+        name: "Python",
+        icon: Terminal,
+        subItems: ["Tkinter","NumPy", "Pandas"]
+      },
       { name: "Java", icon: Code2 },
       { name: "C/C++", icon: Code },
       { name: "SQL", icon: Database }
@@ -123,14 +153,16 @@ export const skills = [
     items: [
       { name: "HTML/CSS/JS", icon: Globe },
       { name: "React", icon: Globe },
-      { name: "Tailwind CSS", icon: Code2 },
-      { name: "MongoDB", icon: Database }
+      { name: "Tailwind CSS", icon: Code2 }
     ]
   },
   {
     category: "Backend",
     items: [
-      { name: "Learning", icon: Loader }
+      // { name: "Learning", icon: Loader },
+      { name: "Node js", icon: Globe},
+      { name: "Express js", icon: Globe},
+      { name: "Supabase", icon: Server}
     ]
   },
   {
@@ -138,8 +170,18 @@ export const skills = [
     items: [
       { name: "MySQL", icon: Database },
       { name: "MongoDB", icon: Database },
-      { name: "VScode, Intellij ", icon: Code2 },
-      { name: "Git and Github", icon: GitBranch }
+      { 
+        name: "Code Editor & IDE", 
+        icon: Code2, 
+        subItems: ["VScode","Intellij","Pycharm"] 
+      },
+      { name: "Git and Github", icon: GitBranch },
+      { name: "Supabase", icon: Server},
+      {
+        name: "Operating Systems",
+        icon: Computer,
+        subItems: ["Windows 11", "Linux Mint"]
+      }
     ]
   }
 ];

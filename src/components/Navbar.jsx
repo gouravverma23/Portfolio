@@ -101,6 +101,15 @@ const Navbar = () => {
                             )}
                         </button>
                     ))}
+                    <button
+                        onClick={() => navigate('/projects')}
+                        className={`text-lg font-normal capitalize transition-all duration-300 relative nav-link ${location.pathname === '/projects' ? 'text-[#00FFD1]' : 'text-[#4D4D4D] hover:text-white'}`}
+                    >
+                        All Projects
+                        {location.pathname === '/projects' && (
+                            <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#00FFD1] nav-underline"></span>
+                        )}
+                    </button>
                 </nav>
 
                 {/* Mobile Menu Button */}
@@ -125,6 +134,15 @@ const Navbar = () => {
                             {section === 'home' ? 'Home' : section}
                         </button>
                     ))}
+                    <button
+                        onClick={() => {
+                            setMobileMenuOpen(false);
+                            navigate('/projects');
+                        }}
+                        className={`block w-full text-left px-6 py-3 text-lg capitalize transition-colors duration-300 ${location.pathname === '/projects' ? 'text-[#00FFD1] bg-[#00FFD1]/10' : 'text-white/70 hover:text-white hover:bg-white/5'}`}
+                    >
+                        All Projects
+                    </button>
                 </nav>
             )}
         </header>
