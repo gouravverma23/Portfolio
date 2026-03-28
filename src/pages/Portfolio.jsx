@@ -423,12 +423,15 @@ const Portfolio = () => {
               <Mail className="w-5 h-5" />
               Send Email
             </a>
-            <button
+            <a
+              href={personalInfo.resume}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white/10 text-white hover:bg-white hover:text-black hover:scale-105 h-14 px-8 text-lg font-medium rounded-none transition-all duration-400 contact-button"
             >
               <Download className="w-5 h-5" />
               Download Resume
-            </button>
+            </a>
             <div className="flex gap-6 mt-8">
               {social.map((platform) => (
                 <a

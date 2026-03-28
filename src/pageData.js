@@ -4,6 +4,7 @@
 // Mock data for portfolio website
 import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp, Layout, Palette, Share2, Server, Computer } from 'lucide-react';
 import dp4 from './components/ui/dp4.jpg';
+import resume from './components/ui/resume.pdf';
 import websiteFront from './components/ui/websitefront.jpg';
 import websiteFront2 from './components/ui/websitefront2.jpg';
 
@@ -12,7 +13,10 @@ export const personalInfo = {
   title: "Aspiring Software Engineer",
   tagline: "Turning curiosity into code.",
   email: "gverma.developer@gmail.com",
-  profileImage: dp4
+  profileImage: dp4,
+  // To use Google Drive: Paste your link inside the quotes below
+  // To use local PDF: Replace the string with the word 'resume' (which is imported above)
+  resume: "https://drive.google.com/file/d/10j3a--QMg1TYX7diqZYsKIpRZ6_3DuJW/view?usp=drivesdk"
 };
 
 export const about = {
@@ -134,14 +138,15 @@ export const skills = [
   {
     category: "Languages",
     items: [
-      { name: "JavaScript", 
+      {
+        name: "JavaScript",
         icon: Code2,
-        subItems: ["React","Nodejs","Expressjs"]
-       },
+        subItems: ["React", "Nodejs", "Expressjs"]
+      },
       {
         name: "Python",
         icon: Terminal,
-        subItems: ["Tkinter","NumPy", "Pandas"]
+        subItems: ["Tkinter", "NumPy", "Pandas", "Matplotlib", "Seaborn"]
       },
       { name: "Java", icon: Code2 },
       { name: "C/C++", icon: Code },
@@ -160,9 +165,9 @@ export const skills = [
     category: "Backend",
     items: [
       // { name: "Learning", icon: Loader },
-      { name: "Node js", icon: Globe},
-      { name: "Express js", icon: Globe},
-      { name: "Supabase", icon: Server}
+      { name: "Node js", icon: Globe },
+      { name: "Express js", icon: Globe },
+      { name: "Supabase", icon: Server }
     ]
   },
   {
@@ -170,13 +175,13 @@ export const skills = [
     items: [
       { name: "MySQL", icon: Database },
       { name: "MongoDB", icon: Database },
-      { 
-        name: "Code Editor & IDE", 
-        icon: Code2, 
-        subItems: ["VScode","Intellij","Pycharm"] 
+      {
+        name: "Code Editor & IDE",
+        icon: Code2,
+        subItems: ["VScode", "Intellij", "Pycharm"]
       },
       { name: "Git and Github", icon: GitBranch },
-      { name: "Supabase", icon: Server},
+      { name: "Supabase", icon: Server },
       {
         name: "Operating Systems",
         icon: Computer,
@@ -189,27 +194,27 @@ export const skills = [
 export const services = [
   {
     id: 1,
-    title: "Webpage Development(Frontend)",
+    title: "Web Development(Frontend)",
     description: "I can design and develop high-quality landing pages and scalable websites that help build a strong online presence and deliver real results. Using React, Tailwind CSS, and JavaScript, I create fast, responsive, and clean solutions with a strong focus on performance, usability, and smooth user experience across all devices.",
     icon: Layout
   },
   {
     id: 2,
-    title: "UI/UX Design",
-    description: "I design intuitive and visually refined user interfaces with a strong focus on usability and clarity. By paying close attention to spacing, typography, and color harmony, I create designs that feel consistent, functional, and visually engaging across different screens and user interactions.",
-    icon: Palette
-  },
-  {
-    id: 3,
     title: "Social Media Management",
     description: "I can manage organic growth and engagement for brands with 4 years of hands-on experience. I have a strong understanding of content strategy, performance analytics, and community engagement, and I focus on building consistent, meaningful growth through audience-focused and data-driven approaches.",
     icon: Share2
-  }
+  },
+  // {
+  //   id: 3,
+  //   title: "UI/UX Design",
+  //   description: "I design intuitive and visually refined user interfaces with a strong focus on usability and clarity. By paying close attention to spacing, typography, and color harmony, I create designs that feel consistent, functional, and visually engaging across different screens and user interactions.",
+  //   icon: Palette
+  // },
 ];
 
 export const social = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/gaurav-verma-developer/", icon: Linkedin },
   { name: "GitHub", url: "https://github.com/gouravverma23", icon: Github },
-  { name: "Back to top", url: "", icon: ArrowBigUp },
+  { name: "Twitter", url: "https://twitter.com/gverma_dev", icon: Twitter },
   { name: "Instagram", url: "https://instagram.com/_gaurav_vermaaa_", icon: Instagram }
 ];
