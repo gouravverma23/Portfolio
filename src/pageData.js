@@ -146,11 +146,13 @@ export const skills = [
       {
         name: "Python",
         icon: Terminal,
-        subItems: ["Tkinter", "NumPy", "Pandas", "Matplotlib", "Seaborn"]
+        subItems: ["Tkinter", "NumPy", "Pandas", "Matplotlib", "Seaborn","Scikit-learn"]
       },
       { name: "Java", icon: Code2 },
       { name: "C/C++", icon: Code },
-      { name: "SQL", icon: Database }
+      { name: "SQL",
+        icon: Database,
+        subItems: ["MySQL"] }
     ]
   },
   {
@@ -178,10 +180,15 @@ export const skills = [
       {
         name: "Code Editor & IDE",
         icon: Code2,
-        subItems: ["VScode", "Intellij", "Pycharm"]
+        subItems: ["VScode", "Intellij", "Pycharm","Jupyter Notebook","Spyder IDE"]
       },
       { name: "Git and Github", icon: GitBranch },
+      { name: "Frontend Deployment",
+        icon: Globe,
+        subItems: ["Github Pages","Vercel"]
+      },
       { name: "Supabase", icon: Server },
+      { name: "Google colab", icon: Code2},
       {
         name: "Operating Systems",
         icon: Computer,
