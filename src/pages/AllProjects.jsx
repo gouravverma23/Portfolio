@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
 import Tilt from 'react-parallax-tilt';
+import BackgroundEffect from '../components/BackgroundEffect';
 
 const ProjectCard = React.memo(({ project }) => (
     <Card className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card h-full flex flex-col">
@@ -56,32 +57,6 @@ const ProjectCard = React.memo(({ project }) => (
         </CardContent>
     </Card>
 ));
-
-const BackgroundEffect = React.memo(() => {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, []);
-
-    return (
-        <div className="fixed inset-0 pointer-events-none z-0">
-            <div className="animated-gradient"></div>
-            <div className="grid-overlay"></div>
-            <div
-                className="cursor-dot"
-                style={{
-                    left: `${mousePosition.x}px`,
-                    top: `${mousePosition.y}px`
-                }}
-            ></div>
-        </div>
-    );
-});
 
 const AllProjects = () => {
     const navigate = useNavigate();

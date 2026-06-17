@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
 import Tilt from 'react-parallax-tilt';
+import BackgroundEffect from '../components/BackgroundEffect';
 
 const typewriterTitles = [
   'Frontend Developer',
@@ -16,56 +17,6 @@ const typewriterTitles = [
   'AI & Machine Learning Enthusiast'
 ];
 
-const BackgroundEffect = React.memo(() => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [sparkles, setSparkles] = useState([]);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-
-      // Create trailing sparkles
-      if (Math.random() > 0.5) {
-        const newSparkle = {
-          id: Date.now() + Math.random(),
-          x: e.clientX + (Math.random() - 0.5) * 40,
-          y: e.clientY + (Math.random() - 0.5) * 40,
-        };
-        setSparkles(prev => [...prev.slice(-6), newSparkle]);
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      <div className="animated-gradient"></div>
-      <div className="grid-overlay"></div>
-      <div
-        className="cursor-dot"
-        style={{
-          left: `${mousePosition.x}px`,
-          top: `${mousePosition.y}px`
-        }}
-      ></div>
-      {/* Trailing sparkles */}
-      {sparkles.map((sparkle) => (
-        <div
-          key={sparkle.id}
-          className="trailing-sparkle"
-          style={{
-            left: `${sparkle.x}px`,
-            top: `${sparkle.y}px`
-          }}
-        ></div>
-      ))}
-    </div>
-  );
-});
 
 const SkillGroup = ({ group }) => {
   const [expandedSkills, setExpandedSkills] = useState({});

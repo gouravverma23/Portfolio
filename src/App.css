@@ -850,3 +850,29 @@ body {
 button, a, .card-hover, .skill-item, .project-card {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Custom glowing cursor dot */
+.cursor-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00FFD1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: left 0.1s ease-out, top 0.1s ease-out;
+  z-index: 2;
+  box-shadow: 0 0 20px #00FFD1, 0 0 40px rgba(0, 255, 209, 0.8), 0 0 60px rgba(0, 255, 209, 0.5), 0 0 80px rgba(0, 255, 209, 0.3);
+  animation: cursor-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cursor-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 20px #00FFD1, 0 0 40px rgba(0, 255, 209, 0.8), 0 0 60px rgba(0, 255, 209, 0.5), 0 0 80px rgba(0, 255, 209, 0.3);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 0 30px #00FFD1, 0 0 60px rgba(0, 255, 209, 0.9), 0 0 90px rgba(0, 255, 209, 0.7), 0 0 120px rgba(0, 255, 209, 0.5);
+  }
+}
