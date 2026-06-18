@@ -8,8 +8,11 @@ import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
 import Tilt from 'react-parallax-tilt';
 
-const ProjectCard = React.memo(({ project }) => (
-    <Card className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card h-full flex flex-col">
+const ProjectCard = React.memo(({ project, onClick }) => (
+    <Card
+        className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card h-full flex flex-col cursor-pointer"
+        onClick={onClick}
+    >
         <div className="relative h-48 overflow-hidden">
             <img
                 src={project.image}
@@ -21,6 +24,7 @@ const ProjectCard = React.memo(({ project }) => (
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                     className="p-3 bg-[#00FFD1] text-black rounded-sm hover:bg-[#00FFD1]/80 transition-all duration-300 transform hover:scale-110 project-link"
                 >
                     <Github className="w-5 h-5" />
@@ -29,6 +33,7 @@ const ProjectCard = React.memo(({ project }) => (
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                     className="p-3 bg-white text-black rounded-sm hover:bg-white/80 transition-all duration-300 transform hover:scale-110 project-link"
                 >
                     <ExternalLink className="w-5 h-5" />
@@ -125,7 +130,7 @@ const AllProjects = () => {
                             </h2>
                             <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
                                 {pinnedProjects.map(project => (
-                                    <ProjectCard key={project.id} project={project} />
+                                    <ProjectCard key={project.id} project={project} onClick={() => navigate(`/project/${project.slug}`)} />
                                 ))}
                             </div>
                         </section>
@@ -138,7 +143,7 @@ const AllProjects = () => {
                         </h2>
                         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {otherProjects.map(project => (
-                                <ProjectCard key={project.id} project={project} />
+                                <ProjectCard key={project.id} project={project} onClick={() => navigate(`/project/${project.slug}`)} />
                             ))}
                         </div>
                     </section>

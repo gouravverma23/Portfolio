@@ -279,7 +279,8 @@ const Portfolio = () => {
             {projects.filter(p => p.pinned).map((project) => (
               <Card
                 key={project.id}
-                className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card"
+                className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card cursor-pointer"
+                onClick={() => navigate(`/project/${project.slug}`)}
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -292,6 +293,7 @@ const Portfolio = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="p-3 bg-[#00FFD1] text-black rounded-sm hover:bg-[#00FFD1]/80 transition-all duration-300 transform hover:scale-110 project-link"
                     >
                       <Github className="w-5 h-5" />
@@ -300,6 +302,7 @@ const Portfolio = () => {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="p-3 bg-white text-black rounded-sm hover:bg-white/80 transition-all duration-300 transform hover:scale-110 project-link"
                     >
                       <ExternalLink className="w-5 h-5" />
