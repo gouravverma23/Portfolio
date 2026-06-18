@@ -11,7 +11,12 @@ import { SiCplusplus, SiMysql, SiTailwindcss, SiExpress, SiSupabase, SiMongodb, 
 import dp4 from './components/ui/dp4.jpg';
 import resume from './components/ui/resume.pdf';
 import websiteFront from './components/ui/websitefront.jpg';
-import websiteFront2 from './components/ui/websitefront2.jpg';
+import websiteFront2 from './components/ui/websitefront2.png';
+
+import postpage from './components/ui/factsnreelProjectScreenshots/Postpage.png';
+import quickfacts from './components/ui/factsnreelProjectScreenshots/QuickFacts.png';
+import storecategory from './components/ui/factsnreelProjectScreenshots/StoreCategory.png';
+import storecategoryitems from './components/ui/factsnreelProjectScreenshots/StoreCategoryItems.png';
 
 export const personalInfo = {
   name: "Gourav Verma",
@@ -115,7 +120,6 @@ export const projects = [
       },
       { type: "heading", text: "Tech Stack & Implementation" },
       { type: "paragraph", text: "The website was built using vanilla HTML, CSS, and JavaScript — no frameworks or libraries. This was a deliberate choice to strengthen my fundamentals and demonstrate that a polished, modern-looking website can be built from scratch." },
-      { type: "code", language: "html", code: `<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n  <title>FactsNReel - Discover Amazing Facts</title>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body>\n  <nav class="navbar">\n    <div class="logo">FactsNReel</div>\n    <ul class="nav-links">\n      <li><a href="#home">Home</a></li>\n      <li><a href="#facts">Facts</a></li>\n      <li><a href="#about">About</a></li>\n    </ul>\n  </nav>\n  <!-- Content sections -->\n</body>\n</html>` },
       { type: "subheading", text: "Challenges & Learnings" },
       { type: "paragraph", text: "Building this project from scratch taught me how to structure semantic HTML, write maintainable CSS with proper naming conventions, and handle DOM interactions with plain JavaScript. It was my first complete web project and laid the foundation for everything that followed." },
     ]
@@ -132,14 +136,113 @@ export const projects = [
     pinned: true,
     details: [
       { type: "heading", text: "Project Overview" },
-      { type: "paragraph", text: "This is the completely redesigned and rebuilt version of the Factsnreel website, now powered by React and Tailwind CSS. It features a modern, component-based architecture with a much richer user experience compared to the original static site." },
-      { type: "image", src: websiteFront2, alt: "New Factsnreel website homepage" },
-      { type: "subheading", text: "Why a Rebuild?" },
-      { type: "paragraph", text: "The original HTML/CSS website served its purpose well, but as my skills grew, I wanted to leverage React's component model and Tailwind's utility-first approach to create something more scalable, maintainable, and visually stunning." },
+      { type: "paragraph", text: "This project is a content-driven platform developed for my Instagram community, where I share insights on technology, science, world affairs, politics, history, and other curiosity-driven topics. The website serves as a central hub that extends the content experience beyond social media by offering structured articles, quick facts, and curated resources in an organized and user-friendly format. Built with React and Tailwind CSS, the platform focuses on delivering a fast, responsive, and engaging browsing experience. Users can discover content through intelligent search and filtering mechanisms, explore bite-sized facts through an infinite scrolling feed, and access a curated collection of recommended products through an affiliate-powered store section. The project demonstrates modern frontend development practices while emphasizing usability, performance, and scalable architecture." },
+      { type: "heading", text: "Problem Statement"},
+      { type: "paragraph", text: "Social media platforms are effective for content distribution but often make it difficult for users to discover older posts, explore content by category, or access information in a structured manner. Valuable content frequently gets buried within timelines, reducing long-term accessibility and engagement. This project addresses that challenge by creating a dedicated platform where content can be organized, searched, filtered, and explored more efficiently. The goal is to provide visitors with a seamless knowledge-discovery experience while also creating a sustainable ecosystem through curated recommendations and future content management capabilities."},
+      { type: "heading", text: "Key Features"},
+      { type: "subheading", text: "Explore Posts"},
+      { type: "image", src: postpage, alt: "Explore Page screenshot from Website"},
+      { type: "list", items: [
+        "Implemented a fuzzy search mechanism that enables users to find relevant articles even when keywords are partially matched or not entered exactly.",
+        "Developed category-based filtering to help users quickly narrow content according to their interests.",
+        "Designed an intuitive user interface with searchable input fields and interactive category tags for a seamless browsing experience.",
+        "Implemented dynamic filtering on the client side for smooth category switching without page reloads.",
+        "Built reusable React components for article cards, filters, and search functionality to maintain scalability and code maintainability.",
+        "Reduced unnecessary component re-renders through efficient state management practices.",
+        "Improves content discoverability compared to traditional social media feeds.",
+        "Enables users to locate relevant articles within seconds."
+      ]},
+      { type: "subheading", text: "Store Page"},
+      { type: "paragraph", text: "The Store section was developed to extend the platform beyond content consumption by providing users with carefully curated product recommendations aligned with the themes and interests of the community. Rather than functioning as a traditional e-commerce platform, the store serves as a discovery layer that connects users with relevant products through amazon affiliate partnerships."},
+      { type: "image", src: storecategory, alt: "Store Page Screenshot from Website"},
+      { type: "image", src: storecategoryitems, alt: "Store Catergory items list screenshot from website"},
+      { type: "list", items: [
+        "Built dedicated category pages to organize products into meaningful collections for easier exploration.",
+        "Integrated affiliate-based product navigation, allowing users to visit external marketplaces through tracked referral links.",
+        "Demonstrates practical implementation of affiliate marketing within a web application."
+      ]},
+      { type: "subheading", text: "Quick facts page"},
+      { type: "paragraph", text: "The Quick Facts section was designed to deliver bite-sized knowledge in a highly engaging format inspired by modern social media platforms. Instead of requiring users to navigate through multiple pages, content is continuously loaded as they scroll, creating a seamless discovery experience."},
+      { type: "image", src: quickfacts, alt: "Quick fact scrollable feed screenshot from website"},
+      { type: "list", items: [
+        "Implemented infinite scrolling to continuously load content without requiring page refreshes or manual pagination.",
+        "Designed interactive fact cards with visual elements to increase user engagement and readability.",
+        "Created a distraction-free browsing experience focused on rapid knowledge consumption.",
+        "Implemented lazy content loading through infinite scroll to improve perceived performance.",
+        "Provides a familiar browsing experience inspired by modern content platforms."
+      ]},
+      { type: "heading", text: "Future Goals"},
+      { type: "list", items: [
+        "Build a scalable backend API for content management and data handling.",
+        "Create an admin dashboard for creating, editing, publishing, and managing articles without code changes.",
+        "Implement secure user authentication and role-based access control for administrators and content managers.",
+        "Store articles, categories, tags, product recommendations, and user data in a dedicated database.",
+        "Allow users to subscribe for updates and receive notifications about newly published content.",
+        "Add bookmarking, reading history, likes, comments, and content sharing functionality."
+      ]},
+
       { type: "heading", text: "Architecture & Design" },
       { type: "subheading", text: "Component Structure" },
       { type: "paragraph", text: "The application is organized into reusable React components, each responsible for a specific section of the UI. This modular approach makes the codebase easy to maintain and extend." },
-      { type: "code", language: "jsx", code: `// Example component structure\nimport React from 'react';\n\nconst FactCard = ({ title, category, content, image }) => {\n  return (\n    <div className="bg-white/5 backdrop-blur-md rounded-2xl \n                    border border-white/10 p-6 \n                    hover:border-cyan-400/50 transition-all">\n      <span className="text-cyan-400 text-sm font-medium">\n        {category}\n      </span>\n      <h3 className="text-xl font-bold mt-2 text-white">\n        {title}\n      </h3>\n      <p className="text-white/70 mt-3 leading-relaxed">\n        {content}\n      </p>\n    </div>\n  );\n};` },
+      { type: "code", language: "Repository Structure Diagram", code: `project-root/
+│
+├── node_modules/
+├── public/
+│
+├── src/
+│   │
+│   ├── assets/
+│   │
+│   ├── components/
+│   │   ├── CategoryCard.jsx
+│   │   ├── ContactSection.jsx
+│   │   ├── FactCard.jsx
+│   │   ├── FactCardSkeleton.jsx
+│   │   ├── FactModal.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Layout.jsx
+│   │   ├── Navbar.jsx
+│   │   ├── PostCard.jsx
+│   │   ├── PostCardSkeleton.jsx
+│   │   ├── PostModal.jsx
+│   │   ├── ProductCard.jsx
+│   │   ├── ScrollToTop.jsx
+│   │   └── Skeleton.jsx
+│   │
+│   ├── data/
+│   │   ├── about.js
+│   │   ├── facts.js
+│   │   ├── posts.js
+│   │   └── store.js
+│   │
+│   ├── hooks/
+│   │   ├── useActiveCard.js
+│   │   └── useScrollAnimation.js
+│   │
+│   ├── pages/
+│   │   ├── CategoryDetails.jsx
+│   │   ├── Disclosure.jsx
+│   │   ├── Home.jsx
+│   │   ├── Posts.jsx
+│   │   ├── PrivacyPolicy.jsx
+│   │   ├── QuickFacts.jsx
+│   │   └── Store.jsx
+│   │
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+│
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+├── vercel.json
+└── vite.config.js` },
       { type: "subheading", text: "Key Features" },
       {
         type: "list", items: [
@@ -180,7 +283,6 @@ export const projects = [
       },
       { type: "heading", text: "Implementation Details" },
       { type: "paragraph", text: "The calculator uses a menu-driven interface where users select an operation and provide operands. Each operation is handled by a dedicated function, keeping the code clean and modular." },
-      { type: "code", language: "c", code: `#include <stdio.h>\n#include <math.h>\n\nfloat add(float a, float b) { return a + b; }\nfloat subtract(float a, float b) { return a - b; }\nfloat multiply(float a, float b) { return a * b; }\n\nfloat divide(float a, float b) {\n    if (b == 0) {\n        printf("Error: Division by zero!\\n");\n        return 0;\n    }\n    return a / b;\n}\n\nint main() {\n    int choice;\n    float num1, num2, result;\n    \n    printf("=== CLI Calculator ===\\n");\n    printf("1. Addition\\n2. Subtraction\\n");\n    printf("3. Multiplication\\n4. Division\\n");\n    printf("5. Power\\nChoose operation: ");\n    scanf("%d", &choice);\n    // ... operation handling\n    return 0;\n}` },
       { type: "subheading", text: "Learnings" },
       { type: "paragraph", text: "This was one of my earliest programming projects. Building it helped me understand fundamental C concepts like functions, pointers, user input with scanf, and basic error handling. It reinforced the importance of writing clean, readable code even in simple programs." },
     ]
@@ -211,7 +313,6 @@ export const projects = [
       },
       { type: "heading", text: "Technical Implementation" },
       { type: "paragraph", text: "The core logic tracks each keystroke, compares it against the target text, and calculates WPM using the standard formula: (total characters typed / 5) / time in minutes. Accuracy is computed as the ratio of correct characters to total characters typed." },
-      { type: "code", language: "javascript", code: `// Core WPM calculation logic\nfunction calculateWPM(totalChars, timeInSeconds) {\n  const minutes = timeInSeconds / 60;\n  const words = totalChars / 5; // Standard: 5 chars = 1 word\n  return Math.round(words / minutes);\n}\n\n// Real-time character validation\nfunction validateInput(typed, target) {\n  const chars = typed.split('');\n  return chars.map((char, i) => ({\n    char,\n    correct: char === target[i],\n    index: i\n  }));\n}` },
       { type: "subheading", text: "Design Highlights" },
       { type: "paragraph", text: "The UI is clean and distraction-free, putting full focus on the typing experience. The color-coded character feedback provides an intuitive visual indicator of typing accuracy without disrupting the flow." },
       { type: "subheading", text: "Future Improvements" },
@@ -306,8 +407,8 @@ export const skills = [
 export const services = [
   {
     id: 1,
-    title: "Web Development(Frontend)",
-    description: "I can design and develop high-quality landing pages and scalable websites that help build a strong online presence and deliver real results. Using React, Tailwind CSS, and JavaScript, I create fast, responsive, and clean solutions with a strong focus on performance, usability, and smooth user experience across all devices.",
+    title: "Website Development(Frontend)",
+    description: "I create professional landing pages for small businesses and portfolio websites for freelancers and professionals, helping them showcase their services, build credibility, and grow their online presence. Leveraging React, Tailwind CSS, and JavaScript, I deliver fast, responsive, and user-friendly web solutions optimized for performance and engagement.",
     icon: Layout
   },
   {

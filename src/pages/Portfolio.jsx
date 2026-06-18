@@ -11,9 +11,8 @@ import Navbar from '../components/Navbar';
 import Tilt from 'react-parallax-tilt';
 
 const typewriterTitles = [
-  'Frontend Developer',
-  'Learning Backend Development',
-  'AI & Machine Learning Enthusiast'
+  'Full Stack Developer',
+  'AI-ML Enthusiast'
 ];
 
 const BackgroundEffect = React.memo(() => {
