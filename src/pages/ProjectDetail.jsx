@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projects, personalInfo, social } from '../pageData';
-import { ExternalLink, Github, ArrowLeft, Calendar, Code2 } from 'lucide-react';
+import { ExternalLink, Github, ArrowLeft, Calendar, Code2, Users } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
@@ -31,6 +31,105 @@ const BackgroundEffect = React.memo(() => {
         </div>
     );
 });
+
+// Helper to auto-generate GitHub profile DP avatar URL if missing
+const getGithubAvatar = (githubUrl, avatar) => {
+    if (avatar) return avatar;
+    if (!githubUrl) return null;
+    const cleaned = githubUrl.trim().replace(/\/$/, '');
+    const match = cleaned.match(/(?:github\.com\/)?([a-zA-Z0-9_-]+)$/i);
+    if (match && match[1] && match[1].toLowerCase() !== 'github.com') {
+        return `https://github.com/${match[1]}.png`;
+    }
+    return null;
+};
+
+// Ultra-Minimal Contributor Card Component (Entire card clickable to GitHub)
+const ContributorCard = ({ contributor }) => {
+    const avatarUrl = getGithubAvatar(contributor.github, contributor.avatar);
+    const [imgError, setImgError] = useState(false);
+
+    const initials = contributor.name
+        ? contributor.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+        : '??';
+
+    const CardContent = (
+        <div className="group bg-[#09090b] hover:bg-[#111318] border border-white/10 hover:border-[#00FFD1]/50 rounded-xl p-3.5 transition-all duration-300 flex items-center justify-between gap-3 cursor-pointer">
+            <div className="flex items-center gap-3 min-w-0">
+                {avatarUrl && !imgError ? (
+                    <img
+                        src={avatarUrl}
+                        alt={contributor.name}
+                        onError={() => setImgError(true)}
+                        className="w-10 h-10 rounded-full object-cover border border-white/15 group-hover:border-[#00FFD1]/60 transition-colors shrink-0"
+                    />
+                ) : (
+                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/15 group-hover:border-[#00FFD1]/60 flex items-center justify-center text-[#00FFD1] text-xs font-semibold shrink-0">
+                        {initials}
+                    </div>
+                )}
+
+                <div className="min-w-0">
+                    <h4 className="text-sm font-semibold text-white truncate group-hover:text-[#00FFD1] transition-colors">
+                        {contributor.name}
+                    </h4>
+                    <p className="text-xs text-white/60 truncate">
+                        {contributor.role}
+                    </p>
+                    {contributor.institution && (
+                        <p className="text-[10px] text-white/40 font-mono truncate">
+                            {contributor.institution}
+                        </p>
+                    )}
+                </div>
+            </div>
+
+            {contributor.github && (
+                <div className="text-white/30 group-hover:text-[#00FFD1] transition-colors shrink-0 p-1">
+                    <Github className="w-4 h-4" />
+                </div>
+            )}
+        </div>
+    );
+
+    if (contributor.github) {
+        return (
+            <a
+                href={contributor.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block no-underline"
+                title={`Visit ${contributor.name}'s GitHub Profile`}
+            >
+                {CardContent}
+            </a>
+        );
+    }
+
+    return CardContent;
+};
+
+// Contributors Section Component (Minimal & Clean)
+const ContributorsSection = ({ contributors }) => {
+    if (!contributors || contributors.length === 0) return null;
+
+    return (
+        <div className="my-10 pt-6 border-t border-white/10">
+            <div className="flex items-center gap-2 mb-4">
+                <Users className="w-4 h-4 text-[#00FFD1]" />
+                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider">
+                    Contributors
+                </h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {contributors.map((contributor, idx) => (
+                    <ContributorCard key={idx} contributor={contributor} />
+                ))}
+            </div>
+        </div>
+    );
+};
 
 // Renders a single content block based on its type
 const ContentBlock = ({ block, index }) => {
@@ -117,6 +216,9 @@ const ContentBlock = ({ block, index }) => {
                     ))}
                 </ul>
             );
+
+        case 'contributors':
+            return <ContributorsSection contributors={block.items || []} />;
 
         default:
             return null;
@@ -241,7 +343,12 @@ const ProjectDetail = () => {
                             <ContentBlock key={index} block={block} index={index} />
                         ))}
 
-                        {(!project.details || project.details.length === 0) && (
+                        {/* Dedicated Team & Contributors Grid Section */}
+                        {project.contributors && project.contributors.length > 0 && (
+                            <ContributorsSection contributors={project.contributors} />
+                        )}
+
+                        {(!project.details || project.details.length === 0) && (!project.contributors || project.contributors.length === 0) && (
                             <div className="text-center py-16">
                                 <p className="text-white/50 text-lg">
                                     Detailed project documentation coming soon.
@@ -278,7 +385,7 @@ const ProjectDetail = () => {
                                     <Github className="w-5 h-5" />
                                     View on GitHub
                                 </a>
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </div>

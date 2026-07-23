@@ -23,6 +23,7 @@ import parakhLogin from './components/ui/ParakhProjectScreenshots/LoginPage.png'
 import parakhDashboard from './components/ui/ParakhProjectScreenshots/Dashboard.png';
 import parakhUploadQP from './components/ui/ParakhProjectScreenshots/UploadQuestionPaper.png';
 import parakhReview from './components/ui/ParakhProjectScreenshots/ReviewPage.png';
+import parakhReview2 from './components/ui/ParakhProjectScreenshots/ReviewPage2.png';
 import parakhUploadAS from './components/ui/ParakhProjectScreenshots/AnswerSheetUpload.png';
 import parakhResult from './components/ui/ParakhProjectScreenshots/ResultPage.png';
 import parakhArch from './components/ui/ParakhProjectScreenshots/architecture.jpeg';
@@ -107,10 +108,54 @@ export const projects = [
     slug: "parakh-ai-evaluation-system",
     description: "An enterprise-grade, automated evaluation platform for multi-page handwritten engineering answer sheets featuring a 4-tier microservices architecture, AI vision parsing, custom evaluation rubrics, and interactive human-in-the-loop scoring.",
     technologies: ["React", "Vite", "Node.js", "Express", "Supabase", "FastAPI", "Python", "Google Gemini API", "JWT"],
-    github: "https://github.com/gouravverma23/Parakh.git",
-    demo: "https://github.com/gouravverma23/Parakh.git",
+    github: "https://github.com/Team-Parakh/Parakh.git",
+    demo: "https://github.com/Team-Parakh/Parakh.git",
     image: parakhLanding,
     pinned: true,
+    contributors: [
+      {
+        name: "Gourav Verma",
+        role: "Frontend Lead & Backend Developer",
+        institution: "USICT, GGSIPU",
+        github: "https://github.com/gouravverma23",
+        bio: "Built functional React frontend logic, API request handling, upload pipelines & result display, custom JWT auth, Node.js Express orchestrator & Supabase PostgreSQL database."
+      },
+      {
+        name: "Aaditya Pokhriyal",
+        role: "Team Leader & AI Services Developer (QP-Parsing)",
+        institution: "USICT, GGSIPU",
+        github: "https://github.com/AadityaPokhriyal",
+        bio: "Led the AI microservice architecture, prompt engineering strategies, Gemini 3 Flash multimodal API integrations, and built the Node.js Express Question Paper parsing service."
+      },
+      {
+        name: "Divyanshu Yadav",
+        role: "AI Service Developer (AS-Parsing)",
+        institution: "USAR, GGSIPU",
+        github: "https://github.com/Divyanshuyadav-dev",
+        bio: "Engineered the Python FastAPI Answer Sheet evaluation engine, implementing vision OCR processing, handwritten script extraction, Pydantic response models, and AI feedback algorithms."
+      },
+      {
+        name: "Anshu Kumar",
+        role: "Frontend Developer",
+        institution: "USICT, GGSIPU",
+        github: "https://github.com/anshu-kr576",
+        bio: "Co-developed reusable React UI components, page layouts, file upload handlers, and responsive frontend styling alongside the Frontend Lead."
+      },
+      {
+        name: "Raj",
+        role: "UI/UX Developer",
+        institution: "USICT, GGSIPU",
+        github: "https://github.com/rj-codecraft",
+        bio: "Focused on UI design systems, layout structure, interface components, visual ergonomics, and user experience optimizations."
+      },
+      {
+        name: "Jai Singh Rathore",
+        role: "UI/UX Developer",
+        institution: "USICT, GGSIPU",
+        github: "https://github.com/JaiSingh30-design",
+        bio: "Designed UI layouts, interactive interface elements, responsive styling, and user experience workflows."
+      }
+    ],
     details: [
       { type: "heading", text: "Project Overview" },
       { type: "paragraph", text: "Parakh is an enterprise-grade AI-powered answer sheet evaluation platform developed during the AICTE IDEA Lab Summer Internship at Guru Gobind Singh Indraprastha University (GGSIPU). The system is engineered to solve the operational bottlenecks of manual academic grading by automating the parsing, transcription, rubric generation, and evaluation of multi-page handwritten descriptive answer sheets in STEM and engineering disciplines. Built on an isolated 4-tier microservices architecture, Parakh seamlessly connects an interactive React frontend with a Node.js orchestration engine, private AI parsing services, and Supabase relational storage, achieving substantial evaluation speedups while retaining complete human oversight through an interactive grade override workspace." },
@@ -119,16 +164,14 @@ export const projects = [
       { type: "paragraph", text: "Traditional academic assessment in engineering and technical domains relies heavily on manual evaluation of unstructured, handwritten answer scripts containing mathematical derivations, pseudocode, and technical diagrams. This process is inherently time-consuming, highly subjective, and prone to grader fatigue across large student cohorts. While generic Large Language Models (LLMs) exist, standard conversational APIs suffer from structural parsing errors, hallucinations, fractional mark calculation discrepancies, and context window truncations when handling complex multi-page handwritten documents. Educational institutions lack a centralized, secure, and deterministic platform that automates handwriting extraction while strictly adhering to institutional question schemes and scoring rubrics." },
 
       { type: "heading", text: "My Role & Key Technical Contributions" },
-      { type: "paragraph", text: "As the Frontend Lead & Backend Developer (Node.js & Supabase Database/Auth) on the project, my primary responsibilities focused on constructing the complete web application interface and building the core backend orchestration engine:" },
+      { type: "paragraph", text: "As a Frontend & Backend Developer (Node.js & Supabase PostgreSQL) on the project, my primary responsibilities focused on implementing the core functional application, API integrations, building custom JWT authentication, and constructing the backend orchestration engine:" },
       {
         type: "list", items: [
-          "Frontend Architecture & Lead UI Development: Designed and developed the entire Single Page Application (SPA) using React, Vite, and modular CSS, establishing the core design system and responsive UI layouts.",
-          "4-Step Evaluation Workflow Stepper: Built the end-to-end multi-step evaluation wizard guiding teachers through Question Paper Upload → Scheme & Rubric Review → Batch Answer Upload → Analytical Results Workspace.",
-          "Dynamic Theme Engine: Implemented a global Light/Dark mode switcher powered by CSS custom properties and persistent state storage for high contrast and visual ergonomics during long grading sessions.",
-          "Human-in-the-Loop Grade Override Interface: Developed the interactive review workspace in Step 4, allowing educators to review AI reasoning, adjust awarded marks per question node, and inject custom feedback comments.",
+          "Functional Frontend Application: Built core React application logic, handling client-side API requests, minimal file upload setup, evaluation step state management, and analytical result display rendering.",
+          "API Integration & Request Pipeline: Configured dynamic API service wrappers (authFetch) and request handlers connecting client interfaces seamlessly to backend microservices.",
+          "Custom JWT Authentication & Session Security: Developed a custom authentication system from scratch using JSON Web Tokens (JWT) with RSA key wrappers, creating secure session control (authFetch helper) and role-protected API endpoints.",
           "Node.js & Express Backend Orchestrator: Engineered the primary backend gateway (running on Port 5000) that manages request routing, JWT security headers, file stream handling, and service communication with AI microservices.",
-          "Supabase Database Architecture & API Endpoints: Designed the relational database schema (DDL scripts) in Supabase, managing exam metadata, nested question trees, rubric criteria, student answer batch records, and evaluation results with cascading integrity.",
-          "Authentication & Protected Routing: Integrated JWT-based authentication using RSA key wrappers, creating secure session handling (authFetch helper) and role-protected API endpoints for teacher accounts."
+          "Supabase PostgreSQL Database Architecture: Designed the relational database schema (DDL scripts) in Supabase exclusively as the PostgreSQL database engine, managing exam metadata, nested question trees, rubric criteria, student answer batch records, and evaluation results."
         ]
       },
 
@@ -136,11 +179,11 @@ export const projects = [
       { type: "paragraph", text: "Parakh was developed as a collaborative team project under the guidance of academic supervisors at GGSIPU. The team members and their respective specialized roles include:" },
       {
         type: "list", items: [
-          "Gourav Verma (USICT, GGSIPU) — Frontend Lead & Backend Developer: Spearheaded React frontend architecture, UI/UX design, dark/light theme, Node.js Express orchestration engine, Supabase relational database design, JWT auth, and API endpoints.",
-          "Aaditya Pokhriyal (USICT, GGSIPU) — AI Services Lead & Developer (QP-Parsing): Led the AI microservice architecture, prompt engineering strategies, Gemini 3 Flash multimodal API integrations, and built the Node.js Express Question Paper parsing service (QP-parsing microservice on Port 3000) for structured JSON schema extraction.",
-          "Divyanshu Yadav (USAR, GGSIPU) — AI Services & Backend Developer (AS-Parsing): Engineered the Python FastAPI Answer Sheet evaluation engine (AS-parsing microservice on Port 8000), implementing vision OCR processing, handwritten script extraction, Pydantic response models, and AI evaluation feedback algorithms.",
-          "Raj (USICT, GGSIPU) — UI/UX Developer: Focused on UI design systems, layout structure, interface components, visual ergonomics, and user experience optimizations.",
+          "Gourav Verma (USICT, GGSIPU) — Frontend & Backend Developer: Developed core React functional logic, API integration, upload pipeline setup, result display rendering, Node.js Express orchestration engine, custom JWT authentication, and Supabase PostgreSQL schema design.",
+          "Aaditya Pokhriyal (USICT, GGSIPU) — Team Leader & AI Services Developer (QP-Parsing): Led the AI microservice architecture, prompt engineering strategies, Gemini 3 Flash multimodal API integrations, and built the Node.js Express Question Paper parsing service (QP-parsing microservice on Port 3000) for structured JSON schema extraction.",
+          "Divyanshu Yadav (USAR, GGSIPU) — AI Service Developer (AS-Parsing): Engineered the Python FastAPI Answer Sheet evaluation engine (AS-parsing microservice on Port 8000), implementing vision OCR processing, handwritten script extraction, Pydantic response models, and AI evaluation feedback algorithms.",
           "Anshu Kumar (USICT, GGSIPU) — Frontend Developer: Co-developed reusable React UI components, page layouts, file upload handlers, and responsive frontend styling alongside the Frontend Lead.",
+          "Raj (USICT, GGSIPU) — UI/UX Developer: Focused on UI design systems, layout structure, interface components, visual ergonomics, and user experience optimizations.",
           "Jai Singh Rathore (USICT, GGSIPU) — UI/UX Developer: Designed UI layouts, interactive interface elements, responsive styling, and user experience workflows."
         ]
       },
@@ -247,6 +290,7 @@ export const projects = [
       { type: "subheading", text: "5. Step 2: AI Question Structure & Rubric Review" },
       { type: "paragraph", text: "Step 2 presents an interactive question tree generated by AI parsing, enabling educators to review subparts, edit scoring criteria, and adjust mark distributions." },
       { type: "image", src: parakhReview, alt: "Step 2 Question Paper Review & Rubric Editor Interface" },
+      { type: "image", src: parakhReview2, alt: "Step 2 Extended Rubric Details & Subpart Scoring Criteria" },
       {
         type: "list", items: [
           "Hierarchical Question Tree displaying nested sub-questions (Q1 → Q1.a, Q1.b) with mark verification.",
