@@ -18,6 +18,15 @@ import quickfacts from './components/ui/factsnreelProjectScreenshots/QuickFacts.
 import storecategory from './components/ui/factsnreelProjectScreenshots/StoreCategory.png';
 import storecategoryitems from './components/ui/factsnreelProjectScreenshots/StoreCategoryItems.png';
 
+import parakhLanding from './components/ui/ParakhProjectScreenshots/LandingPage.png';
+import parakhLogin from './components/ui/ParakhProjectScreenshots/LoginPage.png';
+import parakhDashboard from './components/ui/ParakhProjectScreenshots/Dashboard.png';
+import parakhUploadQP from './components/ui/ParakhProjectScreenshots/UploadQuestionPaper.png';
+import parakhReview from './components/ui/ParakhProjectScreenshots/ReviewPage.png';
+import parakhUploadAS from './components/ui/ParakhProjectScreenshots/AnswerSheetUpload.png';
+import parakhResult from './components/ui/ParakhProjectScreenshots/ResultPage.png';
+import parakhArch from './components/ui/ParakhProjectScreenshots/architecture.jpeg';
+
 export const personalInfo = {
   name: "Gourav Verma",
   title: "Aspiring Software Engineer",
@@ -92,6 +101,202 @@ export const education = [
 ];
 
 export const projects = [
+  {
+    id: 5,
+    title: "Parakh: AI-Powered Answer Sheet Evaluation System",
+    slug: "parakh-ai-evaluation-system",
+    description: "An enterprise-grade, automated evaluation platform for multi-page handwritten engineering answer sheets featuring a 4-tier microservices architecture, AI vision parsing, custom evaluation rubrics, and interactive human-in-the-loop scoring.",
+    technologies: ["React", "Vite", "Node.js", "Express", "Supabase", "FastAPI", "Python", "Google Gemini API", "JWT"],
+    github: "https://github.com/gouravverma23/Parakh.git",
+    demo: "https://github.com/gouravverma23/Parakh.git",
+    image: parakhLanding,
+    pinned: true,
+    details: [
+      { type: "heading", text: "Project Overview" },
+      { type: "paragraph", text: "Parakh is an enterprise-grade AI-powered answer sheet evaluation platform developed during the AICTE IDEA Lab Summer Internship at Guru Gobind Singh Indraprastha University (GGSIPU). The system is engineered to solve the operational bottlenecks of manual academic grading by automating the parsing, transcription, rubric generation, and evaluation of multi-page handwritten descriptive answer sheets in STEM and engineering disciplines. Built on an isolated 4-tier microservices architecture, Parakh seamlessly connects an interactive React frontend with a Node.js orchestration engine, private AI parsing services, and Supabase relational storage, achieving substantial evaluation speedups while retaining complete human oversight through an interactive grade override workspace." },
+      
+      { type: "heading", text: "Problem Statement" },
+      { type: "paragraph", text: "Traditional academic assessment in engineering and technical domains relies heavily on manual evaluation of unstructured, handwritten answer scripts containing mathematical derivations, pseudocode, and technical diagrams. This process is inherently time-consuming, highly subjective, and prone to grader fatigue across large student cohorts. While generic Large Language Models (LLMs) exist, standard conversational APIs suffer from structural parsing errors, hallucinations, fractional mark calculation discrepancies, and context window truncations when handling complex multi-page handwritten documents. Educational institutions lack a centralized, secure, and deterministic platform that automates handwriting extraction while strictly adhering to institutional question schemes and scoring rubrics." },
+
+      { type: "heading", text: "My Role & Key Technical Contributions" },
+      { type: "paragraph", text: "As the Frontend Lead & Backend Developer (Node.js & Supabase Database/Auth) on the project, my primary responsibilities focused on constructing the complete web application interface and building the core backend orchestration engine:" },
+      {
+        type: "list", items: [
+          "Frontend Architecture & Lead UI Development: Designed and developed the entire Single Page Application (SPA) using React, Vite, and modular CSS, establishing the core design system and responsive UI layouts.",
+          "4-Step Evaluation Workflow Stepper: Built the end-to-end multi-step evaluation wizard guiding teachers through Question Paper Upload → Scheme & Rubric Review → Batch Answer Upload → Analytical Results Workspace.",
+          "Dynamic Theme Engine: Implemented a global Light/Dark mode switcher powered by CSS custom properties and persistent state storage for high contrast and visual ergonomics during long grading sessions.",
+          "Human-in-the-Loop Grade Override Interface: Developed the interactive review workspace in Step 4, allowing educators to review AI reasoning, adjust awarded marks per question node, and inject custom feedback comments.",
+          "Node.js & Express Backend Orchestrator: Engineered the primary backend gateway (running on Port 5000) that manages request routing, JWT security headers, file stream handling, and service communication with AI microservices.",
+          "Supabase Database Architecture & API Endpoints: Designed the relational database schema (DDL scripts) in Supabase, managing exam metadata, nested question trees, rubric criteria, student answer batch records, and evaluation results with cascading integrity.",
+          "Authentication & Protected Routing: Integrated JWT-based authentication using RSA key wrappers, creating secure session handling (authFetch helper) and role-protected API endpoints for teacher accounts."
+        ]
+      },
+
+      { type: "heading", text: "Project Team & Contributors" },
+      { type: "paragraph", text: "Parakh was developed as a collaborative team project under the guidance of academic supervisors at GGSIPU. The team members and their respective specialized roles include:" },
+      {
+        type: "list", items: [
+          "Gourav Verma (USICT, GGSIPU) — Frontend Lead & Backend Developer: Spearheaded React frontend architecture, UI/UX design, dark/light theme, Node.js Express orchestration engine, Supabase relational database design, JWT auth, and API endpoints.",
+          "Aaditya Pokhriyal (USICT, GGSIPU) — AI Services Lead & Developer (QP-Parsing): Led the AI microservice architecture, prompt engineering strategies, Gemini 3 Flash multimodal API integrations, and built the Node.js Express Question Paper parsing service (QP-parsing microservice on Port 3000) for structured JSON schema extraction.",
+          "Divyanshu Yadav (USAR, GGSIPU) — AI Services & Backend Developer (AS-Parsing): Engineered the Python FastAPI Answer Sheet evaluation engine (AS-parsing microservice on Port 8000), implementing vision OCR processing, handwritten script extraction, Pydantic response models, and AI evaluation feedback algorithms.",
+          "Raj (USICT, GGSIPU) — UI/UX Developer: Focused on UI design systems, layout structure, interface components, visual ergonomics, and user experience optimizations.",
+          "Anshu Kumar (USICT, GGSIPU) — Frontend Developer: Co-developed reusable React UI components, page layouts, file upload handlers, and responsive frontend styling alongside the Frontend Lead.",
+          "Jai Singh Rathore (USICT, GGSIPU) — UI/UX Developer: Designed UI layouts, interactive interface elements, responsive styling, and user experience workflows."
+        ]
+      },
+      { type: "paragraph", text: "Supervisors & Mentors: Dr. M. Balakrishna (Supervisor, USICT, GGSIPU) & Dr. Raj Kumar (Mentor, USICT, GGSIPU), AICTE IDEA Lab — Guru Gobind Singh Indraprastha University." },
+
+      { type: "heading", text: "System Architecture & 4-Tier Hierarchy" },
+      { type: "paragraph", text: "Parakh features a decoupled, isolated four-tier microservices architecture designed to isolate private AI execution environments behind a backend reverse proxy gateway for security and horizontal scalability:" },
+      { type: "image", src: parakhArch, alt: "Parakh Isolated 4-Tier System Architecture Hierarchy Diagram" },
+      {
+        type: "list", items: [
+          "Tier 1 — Frontend Client: React (Vite) Single Page Application providing interactive teacher dashboards, dark/light theme options, and evaluation step wizards.",
+          "Tier 2 — Backend Orchestrator: Node.js & Express gateway (Port 5000) managing request authentication, payload validation, job queues, and API routing.",
+          "Tier 3 — Private AI Services: Isolated Node.js QP-Parsing service (Port 3000) for question paper JSON extraction & Python FastAPI AS-Parsing engine (Port 8000) for vision-based handwritten answer grading.",
+          "Tier 4 — Persistence Layer: Supabase relational PostgreSQL database managing exams, evaluation runs, student scores, rubrics, and user profiles."
+        ]
+      },
+      { type: "subheading", text: "Repository Structure" },
+      { type: "code", language: "Repository Structure Diagram", code: `Parakh/
+│
+├── frontend/              # React (Vite) Single Page Application
+│   ├── src/
+│   │   ├── components/    # Reusable UI components (PDFUploader, Navbar, etc.)
+│   │   ├── pages/         # Landing, QP Upload, Answers Upload, Review, Results
+│   │   ├── services/      # API services wrapper (authFetch, backend endpoints)
+│   │   ├── App.jsx        # Routing & Application entry point
+│   │   └── index.css      # Design system & CSS variables (Dark/Light theme)
+│   ├── package.json
+│   └── vite.config.js
+│
+├── backend/               # Node.js Express Orchestrator Gateway (Port 5000)
+│   ├── config/            # Supabase DB connection & environment configuration
+│   ├── controllers/       # Handlers for exams, rubrics, & evaluation sessions
+│   ├── middleware/        # JWT auth verification, file upload & magic-byte check
+│   ├── routes/            # Express router (/api/exams, /api/evaluations, /api/auth)
+│   ├── services/          # Database queries & AI service routing proxies
+│   ├── app.js             # Express entry point
+│   └── package.json
+│
+├── ai-service/            # Private AI Processing Microservices
+│   ├── QP-parsing/        # Question Paper JSON parser (Express on Port 3000)
+│   │   ├── controllers/   # Multimodal Gemini Files API streaming controller
+│   │   ├── middlewares/   # Magic byte file type validator
+│   │   ├── prompts/       # Multi-shot prompts for structured JSON extraction
+│   │   └── schemas/       # JSON output validation schemas
+│   │
+│   └── AS-parsing/        # Answer Sheet Grading Engine (FastAPI on Port 8000)
+│       ├── pydantic_models/# Response models & schema validation
+│       ├── helpers/       # Vision & OCR preprocessing helpers
+│       ├── app.py         # FastAPI application entry point
+│       └── requirements.txt
+│
+└── doc/                   # Documentation & Database Assets
+    ├── Architectural docs/# Generated JSON samples & architectural diagrams
+    ├── test PDFs/         # Sample question papers and student answer sheets
+    ├── schema.sql         # Supabase PostgreSQL relational database schema
+    └── Timeline.md        # AICTE Internship milestones & progress log` },
+
+      { type: "heading", text: "Key Application Modules & Workflows" },
+
+      { type: "subheading", text: "1. Landing Page & Dynamic Theme System" },
+      { type: "paragraph", text: "The landing page introduces the Parakh platform, featuring a 4-step evaluation stepper, hero call-to-action triggers, contributor grid, and a global navigation header equipped with a seamless Day/Night theme toggler." },
+      { type: "image", src: parakhLanding, alt: "Parakh Landing Page and Stepper Interface" },
+      {
+        type: "list", items: [
+          "Interactive Stepper mapping the 4-stage evaluation process.",
+          "Global Day/Night Theme Toggler powered by CSS variables and local storage persistence.",
+          "Fully responsive mobile-to-desktop layout with accessibility standards compliance."
+        ]
+      },
+
+      { type: "subheading", text: "2. Teacher Authentication & Session Security" },
+      { type: "paragraph", text: "Secured via JWT tokens, the authentication portal allows educators to register or log into protected workspaces with institutional credentials." },
+      { type: "image", src: parakhLogin, alt: "Parakh Teacher Authentication Portal" },
+      {
+        type: "list", items: [
+          "Secure session management with automated JWT Bearer headers attached to API calls via authFetch.",
+          "Protected client-side routing preventing unauthorized endpoint access.",
+          "User profile dropdown displaying active teacher metadata and session control."
+        ]
+      },
+
+      { type: "subheading", text: "3. Teacher Dashboard & Project Workspace" },
+      { type: "paragraph", text: "The centralized hub where educators manage all examination evaluation projects, view historical grading sessions, monitor progress, and trigger new pipelines." },
+      { type: "image", src: parakhDashboard, alt: "Parakh Teacher Dashboard Workspace" },
+      {
+        type: "list", items: [
+          "Exam Project Cards detailing subject code, total marks, creation date, and status badges.",
+          "Aggregate class analytics displaying total answer sheets processed and class average scores.",
+          "Quick action triggers for resuming evaluations or modifying grading rubrics."
+        ]
+      },
+
+      { type: "subheading", text: "4. Step 1: Question Paper & Metadata Upload" },
+      { type: "paragraph", text: "Step 1 allows teachers to upload master examination PDFs/images along with exam metadata to initiate automated parsing." },
+      { type: "image", src: parakhUploadQP, alt: "Step 1 Question Paper Upload Interface" },
+      {
+        type: "list", items: [
+          "Drag-and-drop file upload supporting high-resolution images and PDF question papers.",
+          "Configurable metadata parameters (Exam Title, Subject Code, Total Allocated Marks).",
+          "Automated payload dispatch to the backend Node.js QP-parsing microservice."
+        ]
+      },
+
+      { type: "subheading", text: "5. Step 2: AI Question Structure & Rubric Review" },
+      { type: "paragraph", text: "Step 2 presents an interactive question tree generated by AI parsing, enabling educators to review subparts, edit scoring criteria, and adjust mark distributions." },
+      { type: "image", src: parakhReview, alt: "Step 2 Question Paper Review & Rubric Editor Interface" },
+      {
+        type: "list", items: [
+          "Hierarchical Question Tree displaying nested sub-questions (Q1 → Q1.a, Q1.b) with mark verification.",
+          "Rubric & Reference Answer Editor allowing manual updates to AI-generated grading schemes.",
+          "Automated Mark Distribution Core (marksDistributor.js) ensuring nested marks sum accurately to top-level totals."
+        ]
+      },
+
+      { type: "subheading", text: "6. Step 3: Batch Student Answer Sheet Upload" },
+      { type: "paragraph", text: "In Step 3, instructors upload batches of scanned handwritten student answer sheets for evaluation against the validated question schema." },
+      { type: "image", src: parakhUploadAS, alt: "Step 3 Student Answer Sheet Batch Upload Interface" },
+      {
+        type: "list", items: [
+          "Bulk file upload handling multi-page PDF answer sheets for entire student batches.",
+          "Real-time processing queue feedback and status indicators during AI vision execution.",
+          "Asynchronous job dispatching to the private FastAPI handwritten evaluation engine."
+        ]
+      },
+
+      { type: "subheading", text: "7. Step 4: Analytical Results & Human-in-the-Loop Workspace" },
+      { type: "paragraph", text: "Step 4 serves as the primary analytical grading workspace. Educators view comprehensive AI grading breakdowns, review feedback rationale, and manually override scores." },
+      { type: "image", src: parakhResult, alt: "Step 4 Analytical Evaluation & Score Override Workspace" },
+      {
+        type: "list", items: [
+          "Student Selector Sidebar featuring live search by name/roll number and total score previews.",
+          "Granular Question Score Breakdown matching individual question nodes against maximum marks.",
+          "AI Reasoning & Feedback displaying concept matching, missing points, and clarity tags.",
+          "Human-in-the-Loop Override Controls enabling educators to adjust marks and save custom remarks directly to Supabase."
+        ]
+      },
+
+      { type: "heading", text: "Integrity Guards & Verification Core" },
+      { type: "paragraph", text: "To prevent structural degradation and AI calculation discrepancies, Parakh incorporates deterministic program guards:" },
+      {
+        type: "list", items: [
+          "Mathematical Verification Core (marksDistributor.js): Intercepts parsed JSON payloads prior to serialization, programmatically verifying that subpart marks sum perfectly to section totals and preventing rounding hallucinations.",
+          "Pydantic Schema & Exponential Backoff Guard: Strict Pydantic models validate JSON streams in FastAPI; formatting anomalies trigger automated exponential backoff retries up to 5 times."
+        ]
+      },
+
+      { type: "heading", text: "Future Roadmap" },
+      {
+        type: "list", items: [
+          "Direct PDF Annotation: Render OCR bounding boxes and AI redline marks directly onto the student PDF viewer.",
+          "Multilingual Handwriting Support: Expand vision parsing models for regional Indian languages.",
+          "LMS Integrations: Enable seamless grade exports to Canvas, Moodle, and Google Classroom."
+        ]
+      }
+    ]
+  },
   {
     id: 1,
     title: "Website for my Instagram Fact page",
