@@ -5,7 +5,7 @@
 import { Code2, Database, Globe, Cpu, GitBranch, Terminal, Linkedin, Github, Twitter, Instagram, Mail, Code, Loader, CornerDownLeftIcon, ArrowBigUp, Layout, Palette, Share2, Server, Computer, BrainCircuit, BarChart3, Sparkles, Bot, Workflow } from 'lucide-react';
 
 // Brand icons for skills section
-import { FaJs, FaPython, FaJava, FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaDatabase, FaChartBar, FaCss3 } from 'react-icons/fa';
+import { FaJs, FaPython, FaJava, FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaDatabase, FaChartBar, FaCss3, FaDiscord } from 'react-icons/fa';
 import { SiCplusplus, SiMysql, SiTailwindcss, SiExpress, SiSupabase, SiMongodb, SiVscodium, SiIntellijidea, SiJupyter, SiVercel, SiGooglecolab, SiNumpy, SiPandas, SiScikitlearn } from 'react-icons/si';
 
 import dp4 from './components/ui/dp4.jpg';
@@ -159,7 +159,7 @@ export const projects = [
     details: [
       { type: "heading", text: "Project Overview" },
       { type: "paragraph", text: "Parakh is an enterprise-grade AI-powered answer sheet evaluation platform developed during the AICTE IDEA Lab Summer Internship at Guru Gobind Singh Indraprastha University (GGSIPU). The system is engineered to solve the operational bottlenecks of manual academic grading by automating the parsing, transcription, rubric generation, and evaluation of multi-page handwritten descriptive answer sheets in STEM and engineering disciplines. Built on an isolated 4-tier microservices architecture, Parakh seamlessly connects an interactive React frontend with a Node.js orchestration engine, private AI parsing services, and Supabase relational storage, achieving substantial evaluation speedups while retaining complete human oversight through an interactive grade override workspace." },
-      
+
       { type: "heading", text: "Problem Statement" },
       { type: "paragraph", text: "Traditional academic assessment in engineering and technical domains relies heavily on manual evaluation of unstructured, handwritten answer scripts containing mathematical derivations, pseudocode, and technical diagrams. This process is inherently time-consuming, highly subjective, and prone to grader fatigue across large student cohorts. While generic Large Language Models (LLMs) exist, standard conversational APIs suffer from structural parsing errors, hallucinations, fractional mark calculation discrepancies, and context window truncations when handling complex multi-page handwritten documents. Educational institutions lack a centralized, secure, and deterministic platform that automates handwriting extraction while strictly adhering to institutional question schemes and scoring rubrics." },
 
@@ -201,7 +201,8 @@ export const projects = [
         ]
       },
       { type: "subheading", text: "Repository Structure" },
-      { type: "code", language: "Repository Structure Diagram", code: `Parakh/
+      {
+        type: "code", language: "Repository Structure Diagram", code: `Parakh/
 │
 ├── frontend/              # React (Vite) Single Page Application
 │   ├── src/
@@ -386,54 +387,63 @@ export const projects = [
     details: [
       { type: "heading", text: "Project Overview" },
       { type: "paragraph", text: "This project is a content-driven platform developed for my Instagram community, where I share insights on technology, science, world affairs, politics, history, and other curiosity-driven topics. The website serves as a central hub that extends the content experience beyond social media by offering structured articles, quick facts, and curated resources in an organized and user-friendly format. Built with React and Tailwind CSS, the platform focuses on delivering a fast, responsive, and engaging browsing experience. Users can discover content through intelligent search and filtering mechanisms, explore bite-sized facts through an infinite scrolling feed, and access a curated collection of recommended products through an affiliate-powered store section. The project demonstrates modern frontend development practices while emphasizing usability, performance, and scalable architecture." },
-      { type: "heading", text: "Problem Statement"},
-      { type: "paragraph", text: "Social media platforms are effective for content distribution but often make it difficult for users to discover older posts, explore content by category, or access information in a structured manner. Valuable content frequently gets buried within timelines, reducing long-term accessibility and engagement. This project addresses that challenge by creating a dedicated platform where content can be organized, searched, filtered, and explored more efficiently. The goal is to provide visitors with a seamless knowledge-discovery experience while also creating a sustainable ecosystem through curated recommendations and future content management capabilities."},
-      { type: "heading", text: "Key Features"},
-      { type: "subheading", text: "Explore Posts"},
-      { type: "image", src: postpage, alt: "Explore Page screenshot from Website"},
-      { type: "list", items: [
-        "Implemented a fuzzy search mechanism that enables users to find relevant articles even when keywords are partially matched or not entered exactly.",
-        "Developed category-based filtering to help users quickly narrow content according to their interests.",
-        "Designed an intuitive user interface with searchable input fields and interactive category tags for a seamless browsing experience.",
-        "Implemented dynamic filtering on the client side for smooth category switching without page reloads.",
-        "Built reusable React components for article cards, filters, and search functionality to maintain scalability and code maintainability.",
-        "Reduced unnecessary component re-renders through efficient state management practices.",
-        "Improves content discoverability compared to traditional social media feeds.",
-        "Enables users to locate relevant articles within seconds."
-      ]},
-      { type: "subheading", text: "Store Page"},
-      { type: "paragraph", text: "The Store section was developed to extend the platform beyond content consumption by providing users with carefully curated product recommendations aligned with the themes and interests of the community. Rather than functioning as a traditional e-commerce platform, the store serves as a discovery layer that connects users with relevant products through amazon affiliate partnerships."},
-      { type: "image", src: storecategory, alt: "Store Page Screenshot from Website"},
-      { type: "image", src: storecategoryitems, alt: "Store Catergory items list screenshot from website"},
-      { type: "list", items: [
-        "Built dedicated category pages to organize products into meaningful collections for easier exploration.",
-        "Integrated affiliate-based product navigation, allowing users to visit external marketplaces through tracked referral links.",
-        "Demonstrates practical implementation of affiliate marketing within a web application."
-      ]},
-      { type: "subheading", text: "Quick facts page"},
-      { type: "paragraph", text: "The Quick Facts section was designed to deliver bite-sized knowledge in a highly engaging format inspired by modern social media platforms. Instead of requiring users to navigate through multiple pages, content is continuously loaded as they scroll, creating a seamless discovery experience."},
-      { type: "image", src: quickfacts, alt: "Quick fact scrollable feed screenshot from website"},
-      { type: "list", items: [
-        "Implemented infinite scrolling to continuously load content without requiring page refreshes or manual pagination.",
-        "Designed interactive fact cards with visual elements to increase user engagement and readability.",
-        "Created a distraction-free browsing experience focused on rapid knowledge consumption.",
-        "Implemented lazy content loading through infinite scroll to improve perceived performance.",
-        "Provides a familiar browsing experience inspired by modern content platforms."
-      ]},
-      { type: "heading", text: "Future Goals"},
-      { type: "list", items: [
-        "Build a scalable backend API for content management and data handling.",
-        "Create an admin dashboard for creating, editing, publishing, and managing articles without code changes.",
-        "Implement secure user authentication and role-based access control for administrators and content managers.",
-        "Store articles, categories, tags, product recommendations, and user data in a dedicated database.",
-        "Allow users to subscribe for updates and receive notifications about newly published content.",
-        "Add bookmarking, reading history, likes, comments, and content sharing functionality."
-      ]},
+      { type: "heading", text: "Problem Statement" },
+      { type: "paragraph", text: "Social media platforms are effective for content distribution but often make it difficult for users to discover older posts, explore content by category, or access information in a structured manner. Valuable content frequently gets buried within timelines, reducing long-term accessibility and engagement. This project addresses that challenge by creating a dedicated platform where content can be organized, searched, filtered, and explored more efficiently. The goal is to provide visitors with a seamless knowledge-discovery experience while also creating a sustainable ecosystem through curated recommendations and future content management capabilities." },
+      { type: "heading", text: "Key Features" },
+      { type: "subheading", text: "Explore Posts" },
+      { type: "image", src: postpage, alt: "Explore Page screenshot from Website" },
+      {
+        type: "list", items: [
+          "Implemented a fuzzy search mechanism that enables users to find relevant articles even when keywords are partially matched or not entered exactly.",
+          "Developed category-based filtering to help users quickly narrow content according to their interests.",
+          "Designed an intuitive user interface with searchable input fields and interactive category tags for a seamless browsing experience.",
+          "Implemented dynamic filtering on the client side for smooth category switching without page reloads.",
+          "Built reusable React components for article cards, filters, and search functionality to maintain scalability and code maintainability.",
+          "Reduced unnecessary component re-renders through efficient state management practices.",
+          "Improves content discoverability compared to traditional social media feeds.",
+          "Enables users to locate relevant articles within seconds."
+        ]
+      },
+      { type: "subheading", text: "Store Page" },
+      { type: "paragraph", text: "The Store section was developed to extend the platform beyond content consumption by providing users with carefully curated product recommendations aligned with the themes and interests of the community. Rather than functioning as a traditional e-commerce platform, the store serves as a discovery layer that connects users with relevant products through amazon affiliate partnerships." },
+      { type: "image", src: storecategory, alt: "Store Page Screenshot from Website" },
+      { type: "image", src: storecategoryitems, alt: "Store Catergory items list screenshot from website" },
+      {
+        type: "list", items: [
+          "Built dedicated category pages to organize products into meaningful collections for easier exploration.",
+          "Integrated affiliate-based product navigation, allowing users to visit external marketplaces through tracked referral links.",
+          "Demonstrates practical implementation of affiliate marketing within a web application."
+        ]
+      },
+      { type: "subheading", text: "Quick facts page" },
+      { type: "paragraph", text: "The Quick Facts section was designed to deliver bite-sized knowledge in a highly engaging format inspired by modern social media platforms. Instead of requiring users to navigate through multiple pages, content is continuously loaded as they scroll, creating a seamless discovery experience." },
+      { type: "image", src: quickfacts, alt: "Quick fact scrollable feed screenshot from website" },
+      {
+        type: "list", items: [
+          "Implemented infinite scrolling to continuously load content without requiring page refreshes or manual pagination.",
+          "Designed interactive fact cards with visual elements to increase user engagement and readability.",
+          "Created a distraction-free browsing experience focused on rapid knowledge consumption.",
+          "Implemented lazy content loading through infinite scroll to improve perceived performance.",
+          "Provides a familiar browsing experience inspired by modern content platforms."
+        ]
+      },
+      { type: "heading", text: "Future Goals" },
+      {
+        type: "list", items: [
+          "Build a scalable backend API for content management and data handling.",
+          "Create an admin dashboard for creating, editing, publishing, and managing articles without code changes.",
+          "Implement secure user authentication and role-based access control for administrators and content managers.",
+          "Store articles, categories, tags, product recommendations, and user data in a dedicated database.",
+          "Allow users to subscribe for updates and receive notifications about newly published content.",
+          "Add bookmarking, reading history, likes, comments, and content sharing functionality."
+        ]
+      },
 
       { type: "heading", text: "Architecture & Design" },
       { type: "subheading", text: "Component Structure" },
       { type: "paragraph", text: "The application is organized into reusable React components, each responsible for a specific section of the UI. This modular approach makes the codebase easy to maintain and extend." },
-      { type: "code", language: "Repository Structure Diagram", code: `project-root/
+      {
+        type: "code", language: "Repository Structure Diagram", code: `project-root/
 │
 ├── node_modules/
 ├── public/
@@ -678,5 +688,6 @@ export const social = [
   { name: "LinkedIn", url: "https://www.linkedin.com/in/gaurav-verma-developer/", icon: Linkedin },
   { name: "GitHub", url: "https://github.com/gouravverma23", icon: Github },
   { name: "Twitter", url: "https://twitter.com/gverma_dev", icon: Twitter },
-  { name: "Instagram", url: "https://instagram.com/_gaurav_vermaaa_", icon: Instagram }
+  { name: "Instagram", url: "https://instagram.com/_gaurav_vermaaa_", icon: Instagram },
+  { name: "Discord", url: "https://discord.com/users/1479012535540645938", icon: FaDiscord }
 ];

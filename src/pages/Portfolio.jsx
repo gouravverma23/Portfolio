@@ -200,6 +200,29 @@ const Portfolio = () => {
                   Get In Touch
                 </Button>
               </div>
+              <div className="flex flex-wrap items-center gap-4 pt-3 animate-fade-in-delay">
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="text-white/60 hover:text-[#00FFD1] transition-colors duration-300 p-1"
+                  aria-label="Email"
+                  title={`Email: ${personalInfo.email}`}
+                >
+                  <Mail className="w-6 h-6" />
+                </a>
+                {social.map((platform) => (
+                  <a
+                    key={platform.name}
+                    href={platform.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/60 hover:text-[#00FFD1] transition-colors duration-300 p-1"
+                    aria-label={platform.name}
+                    title={platform.name}
+                  >
+                    <platform.icon className="w-6 h-6" />
+                  </a>
+                ))}
+              </div>
             </div>
             <div className="flex-shrink-0">
               <div className="relative w-64 h-64 md:w-80 md:h-80 profile-container">
