@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { experience, education } from '../pageData';
+import { education } from '../pageData';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
-const ExperienceEducation = () => {
+const Education = () => {
   const navigate = useNavigate();
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [sparkles, setSparkles] = useState([]);
@@ -72,41 +72,6 @@ const ExperienceEducation = () => {
           <ArrowLeft className="w-4 h-4" /> Back to Home
         </Button>
 
-        {/* Experience Section */}
-        <section id="experience" className="py-10">
-          <div className="w-full max-w-6xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Experience</h2>
-            <div className="space-y-8">
-              {experience.map((exp) => (
-                <div
-                  key={exp.id}
-                  className="relative pl-8 border-l-2 border-[#00FFD1]/50 transition-all duration-400 hover:border-[#00FFD1] experience-timeline"
-                >
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-[#00FFD1] rounded-full timeline-dot"></div>
-                  <Card className="bg-[#121212] border-white/25 rounded-2xl rounded-tl-none experience-card">
-                    <CardHeader>
-                      <CardTitle className="text-xl md:text-2xl text-white">{exp.role}</CardTitle>
-                      <CardDescription className="text-base md:text-lg text-[#00FFD1]">
-                        {exp.company} • {exp.duration}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {exp.responsibilities.map((resp, idx) => (
-                          <li key={idx} className="text-white/85 text-base md:text-lg flex items-start gap-2">
-                            <span className="text-[#00FFD1] mt-1">▹</span>
-                            <span>{resp}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Education Section */}
         <section id="education" className="py-10">
           <div className="w-full max-w-6xl mx-auto">
@@ -127,8 +92,12 @@ const ExperienceEducation = () => {
                   <CardContent>
                     <div className="flex flex-wrap items-center gap-4 text-white/85 text-base md:text-lg">
                       <span>Completed: {edu.year}</span>
-                      <span>•</span>
-                      <span>GPA: {edu.gpa}</span>
+                      {edu.gpa && (
+                        <>
+                          <span>•</span>
+                          <span>GPA: {edu.gpa}</span>
+                        </>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -151,4 +120,4 @@ const ExperienceEducation = () => {
   );
 };
 
-export default ExperienceEducation;
+export default Education;

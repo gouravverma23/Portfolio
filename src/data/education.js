@@ -1,14 +1,18 @@
+import aicteLogo from '../assets/AICTE.png';
+
 export const experience = [
   {
     id: 1,
-    role: "Student",
-    company: "USICT, GGSIPU Dwarka sector 6",
-    duration: "Aug 2024 - Present",
+    role: "Full-Stack Developer Intern",
+    company: "All India Council for Technology Education (AICTE)",
+    duration: "20th June 2026 - 31st July 2026",
+    logo: aicteLogo, // Pass company logo URL or imported image file path here
     responsibilities: [
-      "Pursuing B.Tech in Computer Science and Engineering at USICT, GGSIPU.",
-      "Gaining hands-on knowledge in programming, data structures, and software development.",
-      "Participating in projects and workshops to enhance technical skills.",
-      "Actively exploring new technologies and learning opportunities in the field of CSE."
+      "Collaborated with the team to build Parakh, an AI-based system for evaluating question papers and handwritten answer sheet PDFs with automated marking and feedback.",
+      "Developed secure and scalable REST APIs using Node.js and Express.js.",
+      "Designed and managed the Supabase PostgreSQL database, including schemas and CRUD operations.",
+      "Led frontend development, building a responsive and user-friendly interface.",
+      "Used Git and GitHub for version control, code reviews, and team collaboration."
     ]
   },
   {
@@ -16,6 +20,7 @@ export const experience = [
     role: "Content Creation",
     company: "Founder of @factsnreel on Instagram",
     duration: "Jan 2020 - Present",
+    logo: "", // Pass company logo URL or imported image file path here
     responsibilities: [
       "Create and edit engaging Instagram reels and posts.",
       "Research and develop content ideas based on trends and audience interest.",
@@ -31,7 +36,7 @@ export const education = [
     degree: "Bachelor of Technology in Computer Science",
     institution: "UNIVERSITY SCHOOL OF INFORMATION COMMUNICATION AND TECHNOLOGY, GGSIPU",
     year: "2024-2028 Ongoing",
-    gpa: "7.8 SGPA CURRENT"
+    gpa: "7.84 CGPA CURRENT"
   },
   {
     id: 2,
@@ -45,10 +50,4 @@ export const education = [
     institution: "Government Boys Senior Secondary School Raj Nagar part 2 Palam New Delhi",
     year: "2018-2022"
   },
-  {
-    id: 4,
-    degree: "Primary Education KG - 6th",
-    institution: "Saint mary's Public School, Durga Vihar, Devli, New Delhi",
-    year: "2010-2018"
-  }
 ];

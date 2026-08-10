@@ -18,7 +18,7 @@ const Navbar = () => {
             setScrolled(window.scrollY > 50);
 
             if (isHome) {
-                const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+                const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
                 const scrollPosition = window.scrollY + 100;
 
                 for (const section of sections) {
@@ -88,7 +88,7 @@ const Navbar = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden md:flex items-center gap-8">
-                    {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
+                    {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
                         <button
                             key={section}
                             onClick={() => scrollToSection(section)}
@@ -124,7 +124,7 @@ const Navbar = () => {
             {/* Mobile Navigation */}
             {mobileMenuOpen && (
                 <nav className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/25 py-4 mobile-menu">
-                    {['home', 'about', 'projects', 'skills', 'contact'].map((section) => (
+                    {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
                         <button
                             key={section}
                             onClick={() => scrollToSection(section)}

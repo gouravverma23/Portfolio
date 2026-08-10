@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { personalInfo, about, experience, education, projects, skills, social, services } from '../pageData';
-import { ExternalLink, Github, Mail, Download, ArrowRight, ChevronDown, Menu, X } from 'lucide-react';
+import { ExternalLink, Github, Mail, Download, ArrowRight, ChevronDown, Menu, X, Briefcase } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -281,17 +281,62 @@ const Portfolio = () => {
           </div>
           <div className="flex justify-center mt-12">
             <Button
-              onClick={() => navigate('/experience-education')}
+              onClick={() => navigate('/education')}
               className="bg-transparent text-[#00FFD1] hover:text-black hover:bg-[#00FFD1] border border-[#00FFD1] flex items-center gap-2 px-8 py-6 text-xl rounded-none transition-all duration-300"
             >
-              Experience & Education <ArrowRight className="w-5 h-5" />
+              Education <ArrowRight className="w-5 h-5" />
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Sections removed: Experience and Education moved to new page */}
-
+      {/* Experience Section */}
+      <section id="experience" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
+        <div className="w-full max-w-6xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold mb-12 text-[#00FFD1] section-title">Experience</h2>
+          <div className="space-y-8">
+            {experience.map((exp) => (
+              <div
+                key={exp.id}
+                className="relative pl-8 border-l-2 border-[#00FFD1]/50 transition-all duration-400 hover:border-[#00FFD1] experience-timeline"
+              >
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-[#00FFD1] rounded-full timeline-dot"></div>
+                <Card className="bg-[#121212] border-white/25 rounded-2xl rounded-tl-none experience-card">
+                  <CardHeader className="flex flex-row items-start gap-4 space-y-0 pb-4">
+                    {exp.logo ? (
+                      <img
+                        src={exp.logo}
+                        alt={exp.company}
+                        className="w-12 h-12 object-cover rounded-full p-0 border border-white/10 flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-[#00FFD1]/10 border border-[#00FFD1]/30 flex items-center justify-center text-[#00FFD1] flex-shrink-0">
+                        <Briefcase className="w-6 h-6" />
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <CardTitle className="text-xl md:text-2xl text-white">{exp.role}</CardTitle>
+                      <CardDescription className="text-base md:text-lg text-[#00FFD1] mt-1">
+                        {exp.company} • {exp.duration}
+                      </CardDescription>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {exp.responsibilities.map((resp, idx) => (
+                        <li key={idx} className="text-white/85 text-base md:text-lg flex items-start gap-2">
+                          <span className="text-[#00FFD1] mt-1">▹</span>
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Projects Section */}
       <section id="projects" className="min-h-screen flex items-center px-6 md:px-[7.6923%] py-20 relative z-10">
