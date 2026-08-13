@@ -1,5 +1,5 @@
-import { FaJs, FaPython, FaJava, FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaDatabase, FaChartBar, FaCss3 } from 'react-icons/fa';
-import { SiCplusplus, SiMysql, SiTailwindcss, SiExpress,SiPostgresql, SiSupabase, SiMongodb, SiVercel, SiNumpy, SiPandas, SiScikitlearn, SiRender } from 'react-icons/si';
+import { FaJs, FaPython, FaJava, FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaDatabase, FaChartBar, FaCss3, FaRobot } from 'react-icons/fa';
+import { SiCplusplus, SiMysql, SiTailwindcss, SiExpress, SiPostgresql, SiSupabase, SiMongodb, SiVercel, SiNumpy, SiPandas, SiScikitlearn, SiRender, SiPostman } from 'react-icons/si';
 
 export const skills = [
   {
@@ -49,7 +49,9 @@ export const skills = [
       // },
       { name: "Git and Github", icon: FaGitAlt },
       { name: "Vercel", icon: SiVercel },
-      { name: "Render", icon: SiRender}
+      { name: "Render", icon: SiRender},
+      { name: "Postman", icon: SiPostman },
+      { name: "Antigravity", icon: FaRobot }
     ]
   },
   {
