@@ -1,5 +1,5 @@
 import { FaJs, FaPython, FaJava, FaHtml5, FaReact, FaNodeJs, FaGitAlt, FaDatabase, FaChartBar, FaCss3, FaRobot } from 'react-icons/fa';
-import { SiCplusplus, SiMysql, SiTailwindcss, SiExpress, SiPostgresql, SiSupabase, SiMongodb, SiVercel, SiNumpy, SiPandas, SiScikitlearn, SiRender, SiPostman } from 'react-icons/si';
+import { SiCplusplus, SiMysql, SiTailwindcss, SiExpress, SiFastapi, SiPostgresql, SiSupabase, SiMongodb, SiVercel, SiNumpy, SiPandas, SiScikitlearn, SiRender, SiPostman } from 'react-icons/si';
 
 export const skills = [
   {
@@ -34,7 +34,7 @@ export const skills = [
     items: [
       { name: "Node js", icon: FaNodeJs },
       { name: "Express js", icon: SiExpress },
-      { name: "FastAPI", icon:SiFastApi },
+      { name: "FastAPI", icon: SiFastapi },
       { name: "Supabase", icon: SiSupabase },
       { name: "MongoDB", icon: SiMongodb },
       { name: "PostgreSQL", icon: SiPostgresql},
