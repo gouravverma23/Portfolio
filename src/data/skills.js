@@ -34,6 +34,7 @@ export const skills = [
     items: [
       { name: "Node js", icon: FaNodeJs },
       { name: "Express js", icon: SiExpress },
+      { name: "FastAPI", icon:SiFastApi },
       { name: "Supabase", icon: SiSupabase },
       { name: "MongoDB", icon: SiMongodb },
       { name: "PostgreSQL", icon: SiPostgresql},
