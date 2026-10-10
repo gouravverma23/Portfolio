@@ -1,6 +1,6 @@
 // from ai
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { personalInfo, about, experience, education, projects, skills, social, services } from '../pageData';
 import { ExternalLink, Github, Mail, Download, ArrowRight, ChevronDown, Menu, X, Briefcase } from 'lucide-react';
@@ -9,6 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
 import Tilt from 'react-parallax-tilt';
+import ShootingStars from '../components/ShootingStars';
+import LogoLoop from '../components/LogoLoop';
 
 const typewriterTitles = [
   'Full Stack Developer',
@@ -158,6 +160,20 @@ const Portfolio = () => {
     }
   };
 
+  const techLogos = useMemo(() => {
+    return skills.flatMap((category) =>
+      category.items.map((skill) => ({
+        title: skill.name,
+        node: (
+          <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 hover:border-[#00FFD1]/50 hover:bg-[#00FFD1]/10 text-white/85 hover:text-white transition-all duration-300 shadow-sm cursor-default">
+            <skill.icon className="w-5 h-5 text-[#00FFD1]" />
+            <span className="text-sm font-medium whitespace-nowrap tracking-wide">{skill.name}</span>
+          </span>
+        ),
+      }))
+    );
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       <BackgroundEffect />
@@ -167,6 +183,7 @@ const Portfolio = () => {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center px-6 md:px-[7.6923%] pt-20 relative z-10">
+        <ShootingStars />
         <div className={`w-full max-w-6xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 space-y-6">
@@ -253,6 +270,31 @@ const Portfolio = () => {
             <ChevronDown className="w-8 h-8 text-[#00FFD1]" />
           </div>
         </div>
+      </section>
+
+      {/* Tech Stack Marquee */}
+      <section className="relative z-10 py-8 border-y border-white/10 bg-transparent overflow-hidden">
+        <div className="max-w-6xl mx-auto px-6 mb-4 flex items-center justify-between">
+          <p className="text-xs uppercase tracking-widest text-[#00FFD1] font-mono flex items-center gap-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#00FFD1] animate-pulse"></span>
+            Tech Stack &amp; Tools
+          </p>
+          <span className="text-xs text-white/40 hidden sm:inline font-mono">
+            // Hover to pause
+          </span>
+        </div>
+        <LogoLoop
+          logos={techLogos}
+          speed={60}
+          direction="left"
+          logoHeight={38}
+          gap={18}
+          hoverSpeed={0}
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#000000"
+          ariaLabel="Technology skills and tools"
+        />
       </section>
 
       {/* About Section */}

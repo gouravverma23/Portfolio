@@ -1,0 +1,225 @@
+/* ============================================
+   SHOOTING STARS ANIMATION
+   ============================================ */
+
+.shooting-stars-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shooting-star {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, #00FFD1, transparent);
+  border-radius: 999px;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(0, 255, 209, 0.6));
+}
+
+/* Stars start off the right edge, oriented along their travel diagonal */
+
+.star-1 {
+  top: 12%;
+  right: -10%;
+  width: 100px;
+  animation: shoot-1 2.8s 0.5s linear infinite;
+}
+
+.star-2 {
+  top: 25%;
+  right: -5%;
+  width: 80px;
+  animation: shoot-2 3.4s 3s linear infinite;
+}
+
+.star-3 {
+  top: 5%;
+  right: -15%;
+  width: 140px;
+  animation: shoot-3 2.2s 6s linear infinite;
+}
+
+.star-4 {
+  top: 35%;
+  right: -8%;
+  width: 60px;
+  animation: shoot-4 3s 9s linear infinite;
+}
+
+.star-5 {
+  top: 18%;
+  right: -12%;
+  width: 110px;
+  animation: shoot-5 2.5s 12s linear infinite;
+}
+
+/* Each star's rotation matches its actual travel angle */
+/* angle = atan(verticalTravel / horizontalTravel)       */
+
+@keyframes shoot-1 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-22deg);
+  }
+  5% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-110vw) translateY(45vh) rotate(-22deg);
+  }
+}
+
+@keyframes shoot-2 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-22deg);
+  }
+  5% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100vw) translateY(40vh) rotate(-22deg);
+  }
+}
+
+@keyframes shoot-3 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-31deg);
+  }
+  5% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-90vw) translateY(55vh) rotate(-31deg);
+  }
+}
+
+@keyframes shoot-4 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-16deg);
+  }
+  5% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-105vw) translateY(30vh) rotate(-16deg);
+  }
+}
+
+@keyframes shoot-5 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-32deg);
+  }
+  5% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-80vw) translateY(50vh) rotate(-32deg);
+  }
+}
+
+.star-6 {
+  top: 8%;
+  right: -6%;
+  width: 90px;
+  animation: shoot-6 2.6s 1.8s linear infinite;
+}
+
+.star-7 {
+  top: 40%;
+  right: -14%;
+  width: 70px;
+  animation: shoot-7 3.2s 7.5s linear infinite;
+}
+
+.star-8 {
+  top: 22%;
+  right: -3%;
+  width: 120px;
+  animation: shoot-8 2.4s 10.5s linear infinite;
+}
+
+@keyframes shoot-6 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-26deg);
+  }
+  5% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-95vw) translateY(48vh) rotate(-26deg);
+  }
+}
+
+@keyframes shoot-7 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-18deg);
+  }
+  5% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100vw) translateY(28vh) rotate(-18deg);
+  }
+}
+
+@keyframes shoot-8 {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-28deg);
+  }
+  5% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-85vw) translateY(42vh) rotate(-28deg);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .shooting-star {
+    animation: none;
+    display: none;
+  }
+}

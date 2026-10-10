@@ -77,8 +77,11 @@ const Navbar = () => {
     }, [isHome, location.state, navigate, location.pathname]);
 
     return (
-        <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/80 backdrop-blur-md border-b border-white/25' : 'bg-transparent'}`}>
-            <div className="px-6 md:px-[7.6923%] py-4 flex items-center justify-between h-20">
+        <header className="fixed top-0 w-full z-50" style={{ padding: scrolled ? '10px 16px 0' : '0' , transition: 'padding 0.6s cubic-bezier(0.22, 1, 0.36, 1)' }}>
+            <nav
+              className={`navbar-inner ${scrolled ? 'navbar-scrolled' : ''}`}
+            >
+            <div className="px-6 md:px-8 flex items-center justify-between">
                 <div
                     className="text-2xl font-semibold tracking-tight cursor-pointer hover:text-[#00FFD1] transition-colors duration-300 text-white"
                     onClick={() => scrollToSection('home')}
@@ -123,7 +126,7 @@ const Navbar = () => {
 
             {/* Mobile Navigation */}
             {mobileMenuOpen && (
-                <nav className="md:hidden bg-black/95 backdrop-blur-md border-t border-white/25 py-4 mobile-menu">
+                <div className={`md:hidden bg-black/90 backdrop-blur-xl py-4 mobile-menu ${scrolled ? 'rounded-b-2xl' : ''}`}>
                     {['home', 'about', 'experience', 'projects', 'skills', 'contact'].map((section) => (
                         <button
                             key={section}
@@ -143,8 +146,9 @@ const Navbar = () => {
                     >
                         All Projects
                     </button>
-                </nav>
+                </div>
             )}
+            </nav>
         </header>
     );
 };

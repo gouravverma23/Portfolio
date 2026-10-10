@@ -9,7 +9,7 @@ export const skills = [
       {
         name: "Python",
         icon: FaPython,
-        subItems: ["Tkinter", "NumPy", "Pandas", "Matplotlib", "Seaborn", "Scikit-learn"]
+        subItems: ["Pandas", "Scikit-learn","Data Visualization"]
       },
       { name: "Java (Beginner)", icon: FaJava },
       {
@@ -60,7 +60,7 @@ export const skills = [
     items: [
       { name: "Numpy", icon: SiNumpy },
       { name: "Pandas", icon: SiPandas },
-      { name: "Scikit-learn", icon: SiScikitlearn },
+      { name: "Scikit-learn", icon: SiScikitlearn }
     ]
   }
 ];
