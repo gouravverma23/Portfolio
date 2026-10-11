@@ -7,59 +7,74 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Badge } from '../components/ui/badge';
 import Navbar from '../components/Navbar';
 import Tilt from 'react-parallax-tilt';
+import TiltedCard from '../components/TiltedCard';
 
 const ProjectCard = React.memo(({ project, onClick }) => (
-    <Card
-        className="bg-[#121212] border-white/25 rounded-2xl overflow-hidden group project-card h-full flex flex-col cursor-pointer"
-        onClick={onClick}
+    <TiltedCard
+        containerHeight="100%"
+        containerWidth="100%"
+        rotateAmplitude={12}
+        scaleOnHover={1.04}
+        showMobileWarning={false}
+        showTooltip={false}
+        className="h-full"
     >
-        <div className="relative h-48 overflow-hidden">
-            <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover project-image"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center gap-4 project-overlay">
-                <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="p-3 bg-[#00FFD1] text-black rounded-sm hover:bg-[#00FFD1]/80 transition-all duration-300 transform hover:scale-110 project-link"
-                >
-                    <Github className="w-5 h-5" />
-                </a>
-                <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="p-3 bg-white text-black rounded-sm hover:bg-white/80 transition-all duration-300 transform hover:scale-110 project-link"
-                >
-                    <ExternalLink className="w-5 h-5" />
-                </a>
-            </div>
-        </div>
-        <CardHeader>
-            <CardTitle className="text-xl md:text-2xl text-white">{project.title}</CardTitle>
-            <CardDescription className="text-white/85 text-sm md:text-base leading-relaxed">
-                {project.description}
-            </CardDescription>
-        </CardHeader>
-        <CardContent className="mt-auto">
-            <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, idx) => (
-                    <Badge
-                        key={idx}
-                        variant="outline"
-                        className="border-[#00FFD1] text-[#00FFD1] bg-[#00FFD1]/10 rounded-sm px-3 py-1 hover:bg-[#00FFD1] hover:text-black transition-all duration-300 tech-badge"
+        <Card
+            className="bg-[#121212] border-white/25 rounded-2xl group project-card h-full flex flex-col cursor-pointer [transform-style:preserve-3d]"
+            onClick={onClick}
+        >
+            <div className="relative h-48 rounded-t-2xl overflow-hidden [transform-style:preserve-3d]">
+                <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover project-image"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 project-overlay [transform-style:preserve-3d]">
+                    <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-3 bg-[#00FFD1] text-black rounded-sm hover:bg-[#00FFD1]/80 transition-all duration-300 transform hover:scale-110 project-link shadow-xl [transform:translateZ(45px)]"
+                        title="View on GitHub"
                     >
-                        {tech}
-                    </Badge>
-                ))}
+                        <Github className="w-5 h-5" />
+                    </a>
+                    <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="p-3 bg-white text-black rounded-sm hover:bg-white/80 transition-all duration-300 transform hover:scale-110 project-link shadow-xl [transform:translateZ(45px)]"
+                        title="View Live Demo"
+                    >
+                        <ExternalLink className="w-5 h-5" />
+                    </a>
+                </div>
             </div>
-        </CardContent>
-    </Card>
+            <CardHeader className="[transform-style:preserve-3d]">
+                <CardTitle className="text-xl md:text-2xl text-white [transform:translateZ(35px)] [transform-style:preserve-3d] transition-transform duration-200">
+                    {project.title}
+                </CardTitle>
+                <CardDescription className="text-white/85 text-sm md:text-base leading-relaxed [transform:translateZ(20px)] [transform-style:preserve-3d]">
+                    {project.description}
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="mt-auto [transform-style:preserve-3d]">
+                <div className="flex flex-wrap gap-2 [transform:translateZ(25px)] [transform-style:preserve-3d]">
+                    {project.technologies.map((tech, idx) => (
+                        <Badge
+                            key={idx}
+                            variant="outline"
+                            className="border-[#00FFD1] text-[#00FFD1] bg-[#00FFD1]/10 rounded-sm px-3 py-1 hover:bg-[#00FFD1] hover:text-black transition-all duration-300 tech-badge"
+                        >
+                            {tech}
+                        </Badge>
+                    ))}
+                </div>
+            </CardContent>
+        </Card>
+    </TiltedCard>
 ));
 
 const BackgroundEffect = React.memo(() => {
